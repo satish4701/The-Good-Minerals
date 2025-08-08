@@ -1,0 +1,625 @@
+
+
+<section 
+  id="DynamicGallery-{{ section.id }}" 
+  class="dynamic-gallery dynamic-gallery--{{ section.settings.layout }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="page-width">
+    <div class="gallery__container">
+      
+      <!-- Gallery Navigation -->
+      <div class="gallery__navigation">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'image_content' -%}
+            <button 
+              class="gallery__nav-item{% if forloop.first %} gallery__nav-item--active{% endif %}"
+              data-target="{{ block.id }}"
+              data-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.image != blank -%}
+                <div class="gallery__nav-image">
+                  {{
+                    block.settings.image
+                    | image_url: 'width: 2048'
+                    | image_tag:
+                      class: 'gallery__nav-thumbnail',
+                      loading: 'lazy',
+                      alt: block.settings.image.alt | escape
+                  }}
+                </div>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <span class="gallery__nav-title">{{ block.settings.title }}</span>
+              {%- endif -%}
+            </button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      
+      <!-- Gallery Content -->
+      <div class="gallery__content-wrapper">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'image_content' -%}
+            <div 
+              class="gallery__content{% if forloop.first %} gallery__content--active{% endif %}"
+              data-content="{{ block.id }}"
+              data-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="gallery__content-inner">
+                
+                <!-- Image Section -->
+                <div class="gallery__image-section">
+                  {%- if block.settings.image != blank -%}
+                    <div class="gallery__media media">
+                      {{
+                        block.settings.image
+                        | image_url: width: 1200
+                        | image_tag:
+                          class: 'gallery__image',
+                          loading: 'lazy',
+                          alt: block.settings.image.alt | escape
+                      }}
+                    </div>
+                  {%- else -%}
+                    <div class="gallery__media media placeholder">
+                      {{ 'hero-apparel-1' | placeholder_svg_tag: 'gallery__image placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+                
+                <!-- Text Content Section -->
+                <div class="gallery__text-section">
+                  <div class="gallery__text-content">
+                    {%- if block.settings.title != blank -%}
+                      <h2 class="gallery__title">
+                        {{ block.settings.title }}
+                      </h2>
+                    {%- endif -%}
+                    
+                    {%- if block.settings.content != blank -%}
+                      <div class="gallery__description rte">
+                        {{ block.settings.content }}
+                      </div>
+                    {%- endif -%}
+                    
+                    {%- if block.settings.button_label != blank -%}
+                      <div class="gallery__button-wrapper">
+                        <a
+                          {% if block.settings.button_link == blank %}
+                            role="link" aria-disabled="true"
+                          {% else %}
+                            href="{{ block.settings.button_link }}"
+                          {% endif %}
+                          class="gallery__button button"
+                        >
+                          {{- block.settings.button_label | escape -}}
+                        </a>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+{%- style -%}
+  #DynamicGallery-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+  
+  #DynamicGallery-{{ section.id }} .gallery__content {
+    color: {{ section.settings.text_color }};
+  }
+  
+  #DynamicGallery-{{ section.id }} .gallery__button {
+    background-color: {{ section.settings.button_background_color }};
+    color: {{ section.settings.button_text_color }};
+    border-color: {{ section.settings.button_background_color }};
+  }
+  
+  #DynamicGallery-{{ section.id }} .gallery__button:hover {
+    background-color: {{ section.settings.button_background_color | color_darken: 10 }};
+    border-color: {{ section.settings.button_background_color | color_darken: 10 }};
+  }
+{%- endstyle -%}
+<style>
+  /* Dynamic Content Gallery Section Styles */
+
+.dynamic-gallery {
+  position: relative;
+  width: 100%;
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+.gallery__container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Gallery Navigation */
+.gallery__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery__nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  text-align: center;
+  border: none;
+}
+
+
+
+.gallery__nav-item--active {
+  border-color: #000;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gallery__nav-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.gallery__nav-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery__nav-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: inherit;
+  line-height: 1.2;
+}
+
+/* Gallery Content Wrapper */
+.gallery__content-wrapper {
+  position: relative;
+  min-height: 500px;
+}
+
+.gallery__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  transform: translateX(20px);
+}
+
+.gallery__content--active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  position: relative;
+}
+
+.gallery__content-inner {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  height: 100%;
+}
+
+/* Image Section */
+.gallery__image-section {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.gallery__media {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery__image:hover {
+  transform: scale(1.05);
+}
+
+/* Text Content Section */
+.gallery__text-section {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.gallery__text-content {
+  max-width: 500px;
+}
+
+.gallery__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.5rem 0;
+  color: inherit;
+}
+
+.gallery__description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  color: inherit;
+  opacity: 0.9;
+}
+
+.gallery__button-wrapper {
+  margin-top: 2rem;
+}
+
+.gallery__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 48px;
+  white-space: nowrap;
+}
+
+.gallery__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gallery__button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Layout Variations */
+.dynamic-gallery--image-right .gallery__content-inner {
+  flex-direction: row-reverse;
+}
+
+.dynamic-gallery--stacked .gallery__content-inner {
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dynamic-gallery--stacked .gallery__image-section {
+  max-height: 400px;
+}
+
+/* Responsive Design */
+@media screen and (min-width: 750px) {
+  .gallery__content-inner {
+    gap: 6rem;
+  }
+  
+  .gallery__title {
+    font-size: 3rem;
+  }
+  
+  .gallery__description {
+    font-size: 1.2rem;
+  }
+  
+  .gallery__button {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .gallery__content-inner {
+    gap: 8rem;
+  }
+  
+  .gallery__title {
+    font-size: 3.5rem;
+  }
+  
+  .gallery__description {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .dynamic-gallery {
+    padding: 2rem 0;
+  }
+  
+  .gallery__navigation {
+    margin-bottom: 2rem;
+    gap: 0.5rem;
+  }
+  
+  .gallery__nav-item {
+    min-width: 100px;
+    padding: 0.75rem;
+  }
+  
+  .gallery__nav-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .gallery__nav-title {
+    font-size: 0.75rem;
+  }
+  
+  .gallery__content-inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .gallery__text-section {
+    padding: 1rem 0;
+  }
+  
+  .gallery__text-content {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .gallery__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .gallery__description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gallery__button {
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .gallery__content-wrapper {
+    min-height: 400px;
+  }
+}
+
+/* Animation Support */
+.gallery__content {
+  transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+}
+
+.gallery__nav-item {
+  transition: all 0.3s ease;
+}
+
+.gallery__image {
+  transition: transform 0.3s ease;
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .gallery__content,
+  .gallery__nav-item,
+  .gallery__image {
+    transition: none;
+  }
+  
+  .gallery__nav-item:hover {
+    transform: none;
+  }
+  
+  .gallery__image:hover {
+    transform: none;
+  }
+  
+  .gallery__button:hover {
+    transform: none;
+  }
+}
+
+/* Focus States */
+.gallery__nav-item:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Loading States */
+.gallery__image {
+  transition: opacity 0.3s ease;
+}
+
+.gallery__image[loading] {
+  opacity: 0.7;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .gallery__nav-item--active {
+    border-width: 3px;
+  }
+  
+  .gallery__button {
+    border-width: 3px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .gallery__navigation {
+    display: none;
+  }
+  
+  .gallery__content {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    page-break-inside: avoid;
+  }
+  
+  .gallery__content-inner {
+    flex-direction: column;
+  }
+} 
+</style>
+{% schema %}
+{
+  "name": "Dynamic Content Gallery",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "image-left",
+          "label": "Image Left, Content Right"
+        },
+        {
+          "value": "image-right",
+          "label": "Image Right, Content Left"
+        },
+        {
+          "value": "stacked",
+          "label": "Stacked (Image Top, Content Bottom)"
+        }
+      ],
+      "default": "image-left",
+      "label": "Layout"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#f5f5f5",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#333333",
+      "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "default": "#000000",
+      "label": "Button Background Color"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "default": "#ffffff",
+      "label": "Button Text Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_content",
+      "name": "Image & Content",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Content Title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "Content"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Learn More",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Content Gallery",
+      "blocks": [
+        {
+          "type": "image_content"
+        },
+        {
+          "type": "image_content"
+        },
+        {
+          "type": "image_content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 
