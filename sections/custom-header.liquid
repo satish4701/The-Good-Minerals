@@ -1,0 +1,338 @@
+<header class="custom-header-wrapper">
+  <div class="page-width">
+    <div class="custom-header-inner">
+      <a href="{{ shop.url }}" class="custom-header-logo desktop-logo">
+        {% if section.settings.logo_desktop != blank %}
+          <img
+            src="{{ section.settings.logo_desktop | img_url: '300x' }}"
+            alt="{{ section.settings.logo_alt_text }}"
+            width="277"
+            height="36"
+          >
+        {% else %}
+          <span>{{ section.settings.logo_alt_text }}</span>
+        {% endif %}
+      </a>
+      <a href="{{ shop.url }}" class="custom-header-logo mobile-logo">
+        {% if section.settings.logo_mobile != blank %}
+          <img
+            src="{{ section.settings.logo_mobile | img_url: '200x' }}"
+            alt="{{ section.settings.logo_alt_text }}"
+            width=""
+            height=""
+          >
+        {% else %}
+          <span>{{ section.settings.logo_alt_text }}</span>
+        {% endif %}
+      </a>
+      <nav class="custom-header-nav">
+        {% if section.settings.main_menu != blank %}
+          <ul>
+            {% for link in linklists[section.settings.main_menu].links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </nav>
+      <div class="custom-header-actions">
+        {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
+          <a href="{{ section.settings.cta_link }}" class="custom-header-cta">{{ section.settings.cta_label }}</a>
+        {% endif %}
+        {% if section.settings.show_search %}
+          <a href="{{routes.search_url}}" class="custom-header-icon search-icon" aria-label="Search">
+            <img src="{{'icon-search.svg' | asset_url}}" alt="icon search" width="24" height="24">
+          </a>
+        {% endif %}
+        {% if section.settings.show_account %}
+          <a href="{{routes.account_url}}" class="custom-header-icon account-icon" aria-label="Account">
+            <img src="{{'icon-user.svg' | asset_url}}" alt="icon account" width="24" height="24">
+          </a>
+        {% endif %}
+        {% if section.settings.show_cart %}
+          <a href="{{routes.cart_url}}" class="custom-header-icon cart-icon" aria-label="Cart">
+            <img src="{{'icon-bag.svg' | asset_url}}" alt="icon cart" width="24" height="24">
+          </a>
+        {% endif %}
+        <button class="custom-header-mobile-menu-toggle" aria-label="Open Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="custom-header-mobile-menu">
+      <div class="custom-header-mobile-menu-inner">
+        <button class="custom-header-mobile-menu-close" aria-label="Close Menu">&times;</button>
+        {% if section.settings.main_menu != blank %}
+          <ul>
+            {% for link in linklists[section.settings.main_menu].links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
+          <a href="{{ section.settings.cta_link }}" class="custom-header-cta mobile">
+            {{- section.settings.cta_label -}}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .custom-header-wrapper {
+    width: 100%;
+    background: transparent;
+    z-index: 100;
+    position: absolute;
+    top: 41px;
+    left: 0;
+    right: 0;
+    padding: 35px 0;
+  }
+  .custom-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .custom-header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .custom-header-logo img {
+    display: block;
+    max-height: 36px;
+    width: 100%;
+    max-width: 277px;
+  }
+  .custom-header-logo.mobile-logo {
+    display: none;
+  }
+  .custom-header-nav ul {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .custom-header-nav a {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .custom-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .custom-header-cta {
+    background: var(--primary-color);
+    color: var(--dark-primary-color);
+    border-radius: 100px;
+    height: 40px;
+    padding: 0;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+    border: none;
+    line-height: 40px;
+    cursor: pointer;
+    min-width: 163px;
+    text-align: center;
+    margin-right: 10px;
+  }
+  .custom-header-cta:hover {
+    background: var(--primary-color);
+  }
+  .custom-header-icon {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #222;
+    padding: 0.3rem;
+    transition: color 0.2s;
+  }
+  .custom-header-mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  .custom-header-mobile-menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #222;
+    border-radius: 2px;
+  }
+  .custom-header-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .custom-header-mobile-menu.open {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  .custom-header-mobile-menu-inner {
+    padding: 2rem 1.5rem;
+  }
+  .custom-header-mobile-menu-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    cursor: pointer;
+  }
+  .custom-header-mobile-menu ul {
+    list-style: none;
+    padding: 2rem 0 0 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .custom-header-mobile-menu a {
+    color: #222;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .custom-header-cta.mobile {
+    display: block;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  @media (max-width: 1199px) {
+    .custom-header-inner {
+      padding: 0.5rem 1rem;
+    }
+    .custom-header-nav {
+      display: none;
+    }
+    .custom-header-logo.desktop-logo {
+      display: none;
+    }
+    .custom-header-logo.mobile-logo {
+      display: flex;
+    }
+    .custom-header-mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var menuToggle = document.querySelector('.custom-header-mobile-menu-toggle');
+    var mobileMenu = document.querySelector('.custom-header-mobile-menu');
+    var menuClose = document.querySelector('.custom-header-mobile-menu-close');
+    if (menuToggle && mobileMenu && menuClose) {
+      menuToggle.addEventListener('click', function () {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      menuClose.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+      // Optional: close menu on outside click
+      mobileMenu.addEventListener('click', function (e) {
+        if (e.target === mobileMenu) {
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+</script>
+{% schema %}
+{
+  "name": "Custom Header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_desktop",
+      "label": "Desktop Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_mobile",
+      "label": "Mobile Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt_text",
+      "label": "Logo Alt Text",
+      "default": "The Good Mineral"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main Navigation Menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Label",
+      "default": "Find My Shade"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show Search Icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show Account Icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show Cart Icon",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

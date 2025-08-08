@@ -6,6 +6,9 @@
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+  --primary-color: #FBF2F5;
+  --dark-primary-color: #D499AB;
+  --white: #FFFFFF;
 }
 
 .product-card-wrapper .card,
@@ -77,9 +80,10 @@
 /* base */
 
 .page-width {
-  max-width: var(--page-width);
+  max-width: 1612px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 30px;
+  width: 100%;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
@@ -101,9 +105,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 @media screen and (min-width: 750px) {
-  .page-width {
-    padding: 0 5rem;
-  }
+ 
 
   .header.page-width,
   .utility-bar__grid.page-width {
@@ -2246,10 +2248,13 @@ input[type='checkbox'] {
 
 .announcement-bar__message {
   text-align: center;
-  padding: 1rem 0;
+  padding: 12px 0 12px;
   margin: 0;
-  letter-spacing: 0.1rem;
-  min-height: 3.8rem;
+}
+.announcement-bar__message span {
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,
@@ -2340,10 +2345,18 @@ input[type='checkbox'] {
 }
 
 /* Main Header Layout */
+
 .header-wrapper {
   display: block;
-  position: relative;
-  background-color: rgb(var(--color-background));
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 41px;
+  background-color: transparent !important;
+}
+.scrolled-past-header .header-wrapper {
+  background-color: rgb(var(--color-background)) !important;
+  top: 0;
 }
 
 .header-wrapper--border-bottom {

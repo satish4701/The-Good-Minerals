@@ -1,0 +1,331 @@
+<section
+  id="CustomBanner-{{ section.id }}"
+  class="custom-banner custom-banner--medium"
+>
+  <div class="page-width">
+    <!-- Background Image -->
+    {%- if section.settings.image != blank -%}
+      <div class="custom-banner__background media">
+        {{
+          section.settings.image
+          | image_url: width: 2000
+          | image_tag: class: 'custom-banner__background-image', loading: 'lazy', alt: section.settings.image.alt
+          | escape
+        }}
+      </div>
+    {%- else -%}
+      <div class="custom-banner__background media placeholder">
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'custom-banner__background-image placeholder-svg' }}
+      </div>
+    {%- endif -%}
+
+    <!-- Overlay -->
+    <div class="custom-banner__overlay"></div>
+
+    <!-- Content -->
+    <div class="custom-banner__container">
+      <div class="custom-banner__content">
+        <div class="custom-banner__text-content">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="custom-banner__heading {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.settings.text != blank -%}
+            <div class="custom-banner__text rte {{ section.settings.text_style }}">
+              {{ section.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.button_label != blank -%}
+            <div class="custom-banner__button-wrapper">
+              <a
+                {% if section.settings.button_link == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ section.settings.button_link }}"
+                {% endif %}
+                class="custom-banner__button button"
+              >
+                {{- section.settings.button_label | escape -}}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- style -%}
+    #CustomBanner-{{ section.id }} .custom-banner__text-content {
+      color: {{ section.settings.text_color }};
+    }
+
+    #CustomBanner-{{ section.id }} .custom-banner__button {
+      background-color: {{ section.settings.button_background_color }};
+      color: {{ section.settings.button_text_color }};
+      border-color: {{ section.settings.button_background_color }};
+    }
+
+    #CustomBanner-{{ section.id }} .custom-banner__button:hover {
+      background-color: {{ section.settings.button_background_color | color_darken: 10 }};
+      border-color: {{ section.settings.button_background_color | color_darken: 10 }};
+    }
+
+    #CustomBanner-{{ section.id }} .custom-banner__overlay {
+      background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    }
+    /* Custom Banner with Text Section Styles */
+
+  .custom-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    max-height: 960px;
+  }
+
+  .custom-banner__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .custom-banner__background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .custom-banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+
+  .custom-banner__container {
+    position: relative;
+    z-index: 3;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .custom-banner__content {
+   
+  }
+
+  .custom-banner__text-content {
+   
+  }
+
+  .custom-banner__heading {
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .custom-banner__text {
+    margin: 0 0 2rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.95;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .custom-banner__button-wrapper {
+    margin-top: 2rem;
+  }
+
+  .custom-banner__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 48px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+
+
+  .custom-banner__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  .custom-banner__button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* Focus States */
+  .custom-banner__button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+{%- endstyle -%}
+{% schema %}
+{
+  "name": "Custom Banner with Text",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Makeup for sensitive skin",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+        {
+          "value": "hxl",
+          "label": "Extra Large"
+        },
+        {
+          "value": "hxxl",
+          "label": "Extra Extra Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Save time and use this skin-loving 3 in 1 as a concealer, foundation & powder</p>",
+      "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body"
+        },
+        {
+          "value": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "value": "caption-with-letter-spacing",
+          "label": "Caption"
+        }
+      ],
+      "default": "body",
+      "label": "Text Style"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Bundle and save",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#ffffff",
+      "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "default": "#f8b4c4",
+      "label": "Button Background Color"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "default": "#ffffff",
+      "label": "Button Text Color"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner with Text"
+    }
+  ]
+}
+{% endschema %}
