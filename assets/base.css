@@ -10,6 +10,7 @@
   --dark-primary-color: #D499AB;
   --light-primary-color: #E8BAC8;
   --white: #FFFFFF;
+  --light-black:#272525
 }
 
 .product-card-wrapper .card,
@@ -2339,6 +2340,7 @@ input[type='checkbox'] {
 
 .shopify-section-group-header-group {
   z-index: 4;
+  max-height: 40px;
 }
 
 .section-header ~ .shopify-section-group-header-group {

@@ -30,14 +30,14 @@
         "image_content_WBUqcy": {
           "type": "image_content",
           "settings": {
-            "image": "shopify://shop_images/essence.png",
+            "image": "shopify://shop_images/buzz-feed.png",
             "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
           }
         },
         "image_content_aDJAxp": {
           "type": "image_content",
           "settings": {
-            "image": "shopify://shop_images/bod.png",
+            "image": "shopify://shop_images/fortune.png",
             "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
           }
         },
@@ -78,10 +78,51 @@
         "button_background_color": "#000000",
         "button_text_color": "#ffffff"
       }
+    },
+    "top_rated_products_degGK6": {
+      "type": "top-rated-products",
+      "blocks": {
+        "product_UCAKNR": {
+          "type": "product",
+          "settings": {
+            "product": "loves-you-back-3in1-powder-foundation"
+          }
+        },
+        "product_rGGNEg": {
+          "type": "product",
+          "settings": {
+            "product": "blush-boost-mineral-powder"
+          }
+        },
+        "product_GCWKxd": {
+          "type": "product",
+          "settings": {
+            "product": "iconic-flat-blending-brush"
+          }
+        }
+      },
+      "block_order": [
+        "product_UCAKNR",
+        "product_rGGNEg",
+        "product_GCWKxd"
+      ],
+      "name": "Top Rated Products",
+      "settings": {
+        "icon": "shopify://shop_images/sym-air.svg",
+        "heading": "<p>These are <strong>top-rated</strong> for a reason.</p>",
+        "description": "<p>Shop some of our most popular products and prepare to fall in love.</p>",
+        "decorative_image": "shopify://shop_images/cover-image.png",
+        "background_color": "#fbf7f8",
+        "heading_color": "#272525",
+        "description_color": "#272525",
+        "button_background_color": "#d499ab",
+        "button_text_color": "#ffffff"
+      }
     }
   },
   "order": [
     "custom_banner_with_text_zrDLgB",
-    "dynamic_content_gallery_BkBaw4"
+    "dynamic_content_gallery_BkBaw4",
+    "top_rated_products_degGK6"
   ]
 }
