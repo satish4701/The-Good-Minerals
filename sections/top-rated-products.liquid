@@ -75,9 +75,7 @@
                           {%- else -%}
                             {{ 'product-1' | placeholder_svg_tag: 'product-card__img placeholder-svg' }}
                           {%- endif -%}
-                        </div>
-                        
-                        <!-- Color Swatches -->
+                           <!-- Color Swatches -->
                         {%- if product.has_only_default_variant == false -%}
                           <div class="product-card__swatches">
                             {%- for option in product.options_with_values -%}
@@ -103,6 +101,9 @@
                             {%- endfor -%}
                           </div>
                         {%- endif -%}
+                        </div>
+                        
+                       
                         
                         <!-- Product Details -->
                         <div class="product-card__details">
@@ -280,22 +281,22 @@
 /* Top Rated Products Section Styles */
 
 .top-rated-products {
-  padding: 80px 0;
+  padding: 50px 0;
 }
 
 /* Header Styles */
 .top-rated-products__header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 58px;
 }
 
 .top-rated-products__icon {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .top-rated-products__icon-image {
-  width: 48px;
-  height: 48px;
+  width: 39px;
+  height: 33px;
   object-fit: contain;
 }
 
@@ -306,10 +307,13 @@ font-size: 40px;
 line-height: 100%;
 letter-spacing: 0;
 text-align: center;
+margin: 0;
 color: var(--light-black)
 
 }
-
+.top-rated-products__heading p{
+  margin: 0;
+}
 .top-rated-products__heading strong {
   color: var(--dark-primary-color);
 }
@@ -320,9 +324,12 @@ font-size: 14px;
 line-height: 24px;
 letter-spacing: 0;
 text-align: center;
-
+margin: 10px 0 0;
 color: var(--light-black)
 
+}
+.top-rated-products__description p{
+  margin: 0;
 }
 
 /* Content Layout */
@@ -334,7 +341,7 @@ color: var(--light-black)
 
 /* Decorative Image */
 .top-rated-products__decorative-image {
-  flex: 0 0 250px;
+  flex: 0 0 24%;
 
 }
 
@@ -342,6 +349,7 @@ color: var(--light-black)
   width: 100%;
   height: auto;
   object-fit: contain;
+  border-radius: 12px;
 }
 
 /* Product Cards Grid */
@@ -358,34 +366,42 @@ color: var(--light-black)
 
 /* Product Card Styles */
 .product-card {
-  padding: 20px;
+  padding: 24px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  background-color: var(--white);
+  border-radius: 16px;
 }
 
 
 .product-card__image {
   margin-bottom: 15px;
   text-align: center;
+  height: 316px;
+  position: relative;
 }
 
 .product-card__img {
   width: 100%;
-  max-width: 150px;
-  height: auto;
-  object-fit: contain;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+
 }
 
 /* Color Swatches */
 .product-card__swatches {
-  margin-bottom: 15px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .color-swatches {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
+  gap: 8px 10px;
+  justify-content: start;
 }
 
 .color-swatch {
@@ -425,6 +441,9 @@ font-size: 18px;
 line-height: 24px;
 letter-spacing: 0;
 color: var(--light-black);
+text-align: start;
+margin: 24px 0 16px;
+min-height: 48px;
 
 }
 .product-card__title a {
@@ -440,8 +459,9 @@ font-size: 13px;
 line-height: 24px;
 letter-spacing: 0;
 color: var(--light-black);
+text-align: start;
 
-}
+} 
 
 /* Rating */
 .product-card__rating {
@@ -449,29 +469,29 @@ color: var(--light-black);
   align-items: center;
   justify-content: center;
   gap: 6px;
-  margin-bottom: 12px;
+  margin: 20px 0 8x;
 }
 
-.stars {
+.product-card__rating .stars {
   display: flex;
   gap: 1px;
 }
 
-.star {
+.product-card__rating.star {
   color: #ddd;
   font-size: 14px;
 }
 
-.star--filled {
+.product-card__rating .star--filled {
   color: #ffd700;
 }
 
-.star--half {
+.product-card__rating .star--half {
   color: #ffd700;
   position: relative;
 }
 
-.star--half::after {
+.product-card__rating .star--half::after {
   content: '★';
   position: absolute;
   left: 0;
@@ -488,21 +508,23 @@ color: var(--light-black);
 /* Price */
 .product-card__price {
   margin-bottom: 15px;
+  text-align: start;
 }
 
-.price {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333333;
+.product-card .price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--light-black);
+  line-height: 24px;
 }
 
-.price--sale {
-  color: #ff6b9d;
+.product-card .price--sale {
+  color: var(--dark-primary-color);
 }
 
 .price--compare {
   text-decoration: line-through;
-  color: #999;
+  color: var(--light-gray);
   margin-left: 6px;
   font-size: 0.9rem;
 }
@@ -513,22 +535,28 @@ color: var(--light-black);
 }
 
 .product-card__button {
-  background: #ff6b9d;
-  color: #ffffff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 0.85rem;
+  padding: 0 20px;
+  border-radius: 108px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 100px;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
 }
 
-.product-card__button:hover {
-  background: #e55a8a;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+.product-card__button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.product-card__button--success {
+  background: #4CAF50 !important;
+  color: white !important;
 }
 
 /* Color Popup Card Styles */
@@ -552,13 +580,10 @@ color: var(--light-black);
 }
 
 .color-popup-card__content {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 20px;
-  width: 90%;
-  max-width: 280px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  position: relative;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
 }
 
 .color-popup-card__close {
@@ -609,10 +634,7 @@ color: var(--light-black);
   transition: all 0.3s ease;
 }
 
-.color-variant-card:hover {
-  border-color: #ff6b9d;
-  background: rgba(255, 107, 157, 0.05);
-}
+
 
 .color-variant-card--selected {
   border-color: #ff6b9d;
@@ -661,10 +683,17 @@ color: var(--light-black);
   min-width: 120px;
 }
 
-.color-popup-card__button:hover {
-  background: #e55a8a;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+
+
+.color-popup-card__button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.color-popup-card__button--success {
+  background: #4CAF50 !important;
+  color: white !important;
 }
 
 /* Image Card Styles */
@@ -720,6 +749,12 @@ color: var(--light-black);
 }
 
 /* Responsive Design */
+
+@media screen and (max-width: 1200px) {
+  .top-rated-products__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 @media screen and (max-width: 1024px) {
   .top-rated-products__content {
@@ -959,7 +994,7 @@ const TopRatedProducts = () => {
     const productId = button.dataset.productId;
     const variantId = button.dataset.variantId;
     
-    addVariantToCart(productId, variantId, 1);
+    addVariantToCart(productId, variantId, 1, button);
   };
 
   const addSelectedVariantToCart = (button) => {
@@ -967,23 +1002,126 @@ const TopRatedProducts = () => {
     const variantId = button.dataset.variantId;
     
     if (variantId) {
-      addVariantToCart(productId, variantId, 1);
+      addVariantToCart(productId, variantId, 1, button);
       closeColorPopup(productId);
     }
   };
 
-  const addVariantToCart = async (productId, variantId, quantity) => {
+  const addVariantToCart = async (productId, variantId, quantity, button) => {
     try {
-      alert(`Adding product ID: ${productId}, Variant ID: ${variantId}, Quantity: ${quantity} to cart.`);
-      // This would typically use Shopify's Cart API
-      // In a real implementation, you would:
-      // 1. Add item to cart via Shopify AJAX API
-      // 2. Update cart count
-      // 3. Show cart drawer or notification
+      // Show loading state
+      const originalText = button.textContent;
+      button.textContent = 'Adding...';
+      button.disabled = true;
+      
+      // Prepare form data for Shopify AJAX API
+      const formData = {
+        id: variantId,
+        quantity: quantity
+      };
+      
+      // Make AJAX request to Shopify's cart/add.js endpoint
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        const cartItem = await response.json();
+        
+        // Update button to show "Added to Cart"
+        button.textContent = 'Added to Cart ✓';
+        button.classList.add('product-card__button--success');
+        
+        // Update cart count if cart count element exists
+        updateCartCount();
+        
+        // Show success notification
+        showCartNotification('Product added to cart!', 'success');
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('product-card__button--success');
+          button.disabled = false;
+        }, 3000);
+        
+      } else {
+        throw new Error('Failed to add to cart');
+      }
       
     } catch (error) {
       console.error('Error adding to cart:', error);
+      
+      // Reset button on error
+      const button = event.target;
+      button.textContent = 'Add to Cart';
+      button.disabled = false;
+      
+      showCartNotification('Error adding to cart', 'error');
     }
+  };
+
+  const updateCartCount = async () => {
+    try {
+      // Fetch current cart to get item count
+      const response = await fetch('/cart.js');
+      if (response.ok) {
+        const cart = await response.json();
+        
+        // Update cart count in header if it exists
+        const cartCountElements = document.querySelectorAll('.cart-count, .cart-count-bubble, [data-cart-count]');
+        cartCountElements.forEach(element => {
+          element.textContent = cart.item_count;
+          element.style.display = cart.item_count > 0 ? 'block' : 'none';
+        });
+        
+        // Trigger custom event for other scripts
+        document.dispatchEvent(new CustomEvent('cart:updated', { 
+          detail: { cart: cart } 
+        }));
+      }
+    } catch (error) {
+      console.error('Error updating cart count:', error);
+    }
+  };
+
+  const showCartNotification = (message, type = 'success') => {
+    const notification = document.createElement('div');
+    notification.className = `cart-notification cart-notification--${type}`;
+    notification.textContent = message;
+    
+    Object.assign(notification.style, {
+      position: 'fixed',
+      top: '20px',
+      right: '20px',
+      background: type === 'success' ? '#4CAF50' : '#f44336',
+      color: 'white',
+      padding: '12px 20px',
+      borderRadius: '4px',
+      zIndex: '10000',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+      transform: 'translateX(100%)',
+      transition: 'transform 0.3s ease'
+    });
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    setTimeout(() => {
+      notification.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 300);
+    }, 3000);
   };
 
  

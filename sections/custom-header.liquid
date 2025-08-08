@@ -51,9 +51,10 @@
           </a>
         {% endif %}
         {% if section.settings.show_cart %}
-          <a href="{{routes.cart_url}}" class="custom-header-icon cart-icon" aria-label="Cart">
+          <button type="button" class="custom-header-icon cart-icon" aria-label="Cart" data-action="toggle-cart">
             <img src="{{'icon-bag.svg' | asset_url}}" alt="icon cart" width="24" height="24">
-          </a>
+            <span class="cart-count-bubble" style="display: none;">0</span>
+          </button>
         {% endif %}
         <button class="custom-header-mobile-menu-toggle" aria-label="Open Menu">
           <span></span><span></span><span></span>
@@ -81,7 +82,6 @@
     </div>
   </div>
 </header>
-
 <style>
   .custom-header-wrapper {
     width: 100%;
@@ -161,6 +161,24 @@
     color: #222;
     padding: 0.3rem;
     transition: color 0.2s;
+    position: relative;
+  }
+  
+  .cart-count-bubble {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--primary-color);
+    color: var(--dark-primary-color);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
   .custom-header-mobile-menu-toggle {
     display: none;
@@ -251,6 +269,9 @@
     var menuToggle = document.querySelector('.custom-header-mobile-menu-toggle');
     var mobileMenu = document.querySelector('.custom-header-mobile-menu');
     var menuClose = document.querySelector('.custom-header-mobile-menu-close');
+    var cartToggle = document.querySelector('[data-action="toggle-cart"]');
+    
+    // Mobile menu functionality
     if (menuToggle && mobileMenu && menuClose) {
       menuToggle.addEventListener('click', function () {
         mobileMenu.classList.add('open');
@@ -268,6 +289,50 @@
         }
       });
     }
+    
+    // Cart toggle functionality
+    if (cartToggle) {
+      cartToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // Try to trigger Dawn's cart drawer
+        const cartDrawer = document.querySelector('cart-drawer');
+        if (cartDrawer && typeof cartDrawer.open === 'function') {
+          cartDrawer.open();
+        } else {
+          // Fallback: try to find and click Dawn's cart button
+          const dawnCartButton = document.querySelector('[data-action="toggle-cart"], .header__icon--cart, [aria-label*="cart" i]');
+          if (dawnCartButton) {
+            dawnCartButton.click();
+          } else {
+            // Last resort: navigate to cart page
+            window.location.href = '/cart';
+          }
+        }
+      });
+    }
+    
+    // Update cart count when cart is updated
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          const cartCountElements = document.querySelectorAll('.cart-count-bubble');
+          cartCountElements.forEach(element => {
+            element.textContent = cart.item_count;
+            element.style.display = cart.item_count > 0 ? 'flex' : 'none';
+          });
+        })
+        .catch(error => {
+          console.error('Error updating cart count:', error);
+        });
+    }
+    
+    // Listen for cart updates
+    document.addEventListener('cart:updated', updateCartCount);
+    
+    // Initial cart count update
+    updateCartCount();
   });
 </script>
 {% schema %}
