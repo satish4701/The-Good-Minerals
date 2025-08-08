@@ -118,11 +118,46 @@
         "button_background_color": "#d499ab",
         "button_text_color": "#ffffff"
       }
+    },
+    "promotional_banner_cPCxrJ": {
+      "type": "promotional-banner",
+      "blocks": {
+        "panel_RMHLmF": {
+          "type": "panel",
+          "settings": {
+            "heading": "Find the right shade for you.",
+            "description": "<p>We have 12 <strong>adaptable</strong>, blendable shades of clean powder foundations and we've matched over 50,000 faces - your perfect shade is right here</p>",
+            "button_label": "Find My Shade",
+            "button_link": "#",
+            "image": "shopify://shop_images/Group_93.jpg"
+          }
+        },
+        "panel_DghPQh": {
+          "type": "panel",
+          "settings": {
+            "heading": "Start here! Add both to cart",
+            "description": "<p>The combination that gives natural coverage is the Loves-You-Back 3in1 Powder <strong>Foundation</strong> + Iconic Flat Blending <strong>Brush</strong>. Get 20% off whenever you <strong>add both to cart</strong></p>",
+            "button_label": "Get 20% Off",
+            "button_link": "#",
+            "image": "shopify://shop_images/Group_93_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "panel_RMHLmF",
+        "panel_DghPQh"
+      ],
+      "name": "Promotional Banner",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "custom_banner_with_text_zrDLgB",
     "dynamic_content_gallery_BkBaw4",
-    "top_rated_products_degGK6"
+    "top_rated_products_degGK6",
+    "promotional_banner_cPCxrJ"
   ]
 }
