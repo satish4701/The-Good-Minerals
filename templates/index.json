@@ -31,37 +31,44 @@
           "type": "image_content",
           "settings": {
             "image": "shopify://shop_images/essence.png",
-            "title": "",
-            "content": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "button_label": "",
-            "button_link": "shopify://collections/all"
+            "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
           }
         },
         "image_content_aDJAxp": {
           "type": "image_content",
           "settings": {
             "image": "shopify://shop_images/bod.png",
-            "title": "",
-            "content": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "button_label": "",
-            "button_link": ""
+            "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
           }
         },
         "image_content_LcXkRk": {
           "type": "image_content",
           "settings": {
             "image": "shopify://shop_images/bustle.png",
-            "title": "",
-            "content": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "button_label": "",
-            "button_link": ""
+            "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
+          }
+        },
+        "image_content_RECCcG": {
+          "type": "image_content",
+          "settings": {
+            "image": "shopify://shop_images/bod.png",
+            "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
+          }
+        },
+        "image_content_x6FGYM": {
+          "type": "image_content",
+          "settings": {
+            "image": "shopify://shop_images/essence.png",
+            "content": "<p>“The sisters were searching for flawless coverage makeup that wouldn’t further irritate sensitive, acne-prone skin”</p>"
           }
         }
       },
       "block_order": [
         "image_content_WBUqcy",
         "image_content_aDJAxp",
-        "image_content_LcXkRk"
+        "image_content_LcXkRk",
+        "image_content_RECCcG",
+        "image_content_x6FGYM"
       ],
       "name": "Dynamic Content Gallery",
       "settings": {
