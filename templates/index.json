@@ -152,12 +152,144 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "feature_banner_Yhbtn8": {
+      "type": "feature-banner",
+      "blocks": {
+        "feature_NjqgTC": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/100_Vegan.svg",
+            "title": "100% Vegan"
+          }
+        },
+        "feature_TLEFa6": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/No_Preservative.svg",
+            "title": "No Preservative"
+          }
+        },
+        "feature_6nJBkB": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Fragrance_Free.svg",
+            "title": "Fragrance Free"
+          }
+        },
+        "feature_CGrLKH": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Oil_Free.svg",
+            "title": "Oil Free"
+          }
+        },
+        "feature_bVm8nq": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Non-Synthetic.svg",
+            "title": "Non-Synthetic"
+          }
+        },
+        "feature_F7y3AH": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Cruelty_Free.svg",
+            "title": "Cruelty Free"
+          }
+        }
+      },
+      "block_order": [
+        "feature_NjqgTC",
+        "feature_TLEFa6",
+        "feature_6nJBkB",
+        "feature_CGrLKH",
+        "feature_bVm8nq",
+        "feature_F7y3AH"
+      ],
+      "name": "Feature Banner",
+      "settings": {
+        "heading": "<p><strong>Makeup </strong>for even the most reactive skin</p>",
+        "description": "<p>Our range is so gentle that even if you have sensitive, reactive skin, or conditions like severe acne, rosacea, psoriasis, eczema you can still get glowing comfortable coverage that does not look like a mask - Find out how and why our range is so good and effective!</p>",
+        "button_primary_label": "Good To Know",
+        "button_primary_link": "#",
+        "button_secondary_label": "Browse Products",
+        "button_secondary_link": "#",
+        "padding_top": 40,
+        "padding_bottom": 50
+      }
+    },
+    "testimonial_slider_pmnwch": {
+      "type": "testimonial-slider",
+      "blocks": {
+        "testimonial_NxYmWi": {
+          "type": "testimonial",
+          "settings": {
+            "main_image": "shopify://shop_images/Group_25.png",
+            "avatar_image": "shopify://shop_images/unsplash_RDcEWH5hSDE.png",
+            "name": "Amanda",
+            "rating": 3,
+            "description": "<p>“Love love love your products! I hate wearing make up. It usually feels soo heavy and caky. This is so light and airy. I could wear it 24/7.”</p>"
+          }
+        },
+        "testimonial_fm6GYW": {
+          "type": "testimonial",
+          "settings": {
+            "main_image": "shopify://shop_images/Group_25.png",
+            "avatar_image": "shopify://shop_images/unsplash_RDcEWH5hSDE.png",
+            "name": "Amanda",
+            "rating": 4,
+            "description": "<p>“Love love love your products! I hate wearing make up. It usually feels soo heavy and caky. This is so light and airy. I could wear it 24/7.”</p>"
+          }
+        },
+        "testimonial_DeiqJb": {
+          "type": "testimonial",
+          "settings": {
+            "main_image": "shopify://shop_images/Group_25.png",
+            "avatar_image": "shopify://shop_images/unsplash_RDcEWH5hSDE.png",
+            "name": "Amanda Appleseed",
+            "rating": 5,
+            "description": "<p>“Love love love your products! I hate wearing make up. It usually feels soo heavy and caky. This is so light and airy. I could wear it 24/7.”</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_NxYmWi",
+        "testimonial_fm6GYW",
+        "testimonial_DeiqJb"
+      ],
+      "name": "Testimonial Slider",
+      "settings": {
+        "heading": "<p>Real people <strong>Real results</strong></p>",
+        "description": "<p>Shop some of our most popular products and prepare to fall in love.</p>"
+      }
+    },
+    "three_column_feature_9bXeEK": {
+      "type": "three-column-feature",
+      "name": "Three Column Feature",
+      "settings": {
+        "left_heading": "Handmade. Vegan. Iconic.",
+        "left_description": "Make your powder foundation glow with this brush.",
+        "left_image": "shopify://shop_images/dbcca5a9b6b9cac33b1588bee4f172ca4080c8ef.png",
+        "left_button_text": "Get This Bundle",
+        "left_button_link": "",
+        "middle_heading": "Bundle & Save",
+        "middle_description": "<p><strong>Finish your look with our Glow Box Bundle. </strong> </p><p>Bronzer, Contour, Highlighter, Blush & Brush. All of the magical skincare benefits and everything you need to finish your look in a stunning pink and gold box at an amazing price!</p>",
+        "middle_button_text": "Get This Bundle",
+        "middle_button_link": "#",
+        "video_poster": "shopify://shop_images/12441731db0bfc54a8121dfd8851f44676e550e6.png",
+        "video_url": "shopify://collections/frontpage",
+        "right_heading": "Natural Coverage For Marks & Scars"
+      }
     }
   },
   "order": [
     "custom_banner_with_text_zrDLgB",
     "dynamic_content_gallery_BkBaw4",
     "top_rated_products_degGK6",
-    "promotional_banner_cPCxrJ"
+    "promotional_banner_cPCxrJ",
+    "feature_banner_Yhbtn8",
+    "testimonial_slider_pmnwch",
+    "three_column_feature_9bXeEK"
   ]
 }

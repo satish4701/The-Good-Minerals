@@ -1,0 +1,662 @@
+<section class="testimonial-slider section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="testimonial-slider__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="testimonial-slider__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="testimonial-slider__description">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="testimonial-slider__container">
+      <div class="testimonial-slider__wrapper">
+        <div class="testimonial-slider__slides">
+          {%- for block in section.blocks -%}
+            <div class="testimonial-slider__slide" {{ block.shopify_attributes }}>
+              <div class="testimonial-slider__content">
+                <!-- Left Side - Main Image -->
+                <div class="testimonial-slider__image-section">
+                  {%- if block.settings.main_image != blank -%}
+                    <div class="testimonial-slider__main-image">
+                      {{
+                        block.settings.main_image
+                        | image_url: width: 600
+                        | image_tag: class: 'testimonial-slider__image-element'
+                      }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <!-- Right Side - Testimonial Content -->
+                <div class="testimonial-slider__testimonial-section">
+                  <div class="testimonial-slider__testimonial-content">
+                    <div class="testimonial-slider__author">
+                      {%- if block.settings.avatar_image != blank -%}
+                        <div class="testimonial-slider__avatar">
+                          {{
+                            block.settings.avatar_image
+                            | image_url: width: 80
+                            | image_tag: class: 'testimonial-slider__avatar-image'
+                          }}
+                        </div>
+                      {%- endif -%}
+
+                      <div class="testimonial-slider__author-info">
+                        {%- if block.settings.name != blank -%}
+                          <div class="testimonial-slider__author-name">
+                            {{ block.settings.name }}
+                          </div>
+                        {%- endif -%}
+
+                        {%- if block.settings.rating != blank -%}
+                          <div class="testimonial-slider__rating">
+                            {%- assign rating = block.settings.rating | plus: 0 -%}
+                            {%- for i in (1..5) -%}
+                              <span class="testimonial-slider__star {% if i <= rating %}testimonial-slider__star--filled{% endif %}">
+                                ★
+                              </span>
+                            {%- endfor -%}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                    {%- if block.settings.description != blank -%}
+                      <div class="testimonial-slider__testimonial-text">
+                        {{ block.settings.description }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <!-- Custom Navigation Arrows -->
+                  <button
+                    class="testimonial-slider__nav testimonial-slider__nav--prev"
+                    aria-label="Previous testimonial"
+                  >
+                   <svg xmlns="http://www.w3.org/2000/svg" width="33" height="39" viewBox="0 0 33 39" fill="none" style="fill: none;"><path d="M32 37.2597L1.96572 19.7542L32 1.76463L32 37.2597Z" stroke="currentColor" stroke-width="2"></path><line x1="11" y1="37" x2="11" y2="3" stroke="currentColor" stroke-width="2"></line></svg>
+                  </button>
+
+                  <button class="testimonial-slider__nav testimonial-slider__nav--next" aria-label="Next testimonial">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="33" height="39" viewBox="0 0 33 39" fill="none" style="fill: none;"><path d="M32 37.2597L1.96572 19.7542L32 1.76463L32 37.2597Z" stroke="currentColor" stroke-width="2"></path><line x1="11" y1="37" x2="11" y2="3" stroke="currentColor" stroke-width="2"></line></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-slider {
+    background-color: var(--primary-color);
+    padding: 43px 0 57px;
+  }
+
+  .testimonial-slider__header {
+    text-align: center;
+  }
+
+  .testimonial-slider__heading p {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0 0 10px 0;
+    color: var(--light-black);
+  }
+  .testimonial-slider__heading strong {
+    color: var(--dark-primary-color);
+  }
+
+  .testimonial-slider__description p {
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--light-black);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .testimonial-slider__container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-slider__wrapper {
+    position: relative;
+  }
+
+  .testimonial-slider__slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .testimonial-slider__slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  .testimonial-slider__content {
+    display: flex;
+    gap: 103px;
+    align-items: center;
+    max-width: 1038px;
+    margin: 0 auto;
+  }
+
+  .testimonial-slider__image-section {
+    position: relative;
+    max-width: 550px;
+    width: 100%;
+  }
+  .testimonial-slider__main-image {
+    height: 100%;
+  }
+  .testimonial-slider__image-section img {
+    height: 100%;
+    object-fit: contain;
+    max-height: 514px;
+  }
+
+  .testimonial-slider__testimonial-section {
+    max-width: 385px;
+    width: 100%;
+    position: relative;
+  }
+
+  .testimonial-slider__testimonial-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 29px;
+  }
+
+  .testimonial-slider__testimonial-text p {
+    font-size: 14px;
+    line-height: 25.5px;
+    color: var(--light-black);
+    font-weight: 500;
+    font-style: italic;
+    margin: 0 0 34px 0;
+    text-align: center;
+  }
+
+  .testimonial-slider__author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .testimonial-slider__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  .testimonial-slider__avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .testimonial-slider__author-name {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--light-black);
+    margin-bottom: 10px;
+  }
+
+  .testimonial-slider__rating {
+    display: flex;
+    gap: 7.5px;
+  }
+
+  .testimonial-slider__star {
+    font-size: 29px;
+    color: var(--light-black);
+    transition: color 0.3s ease;
+    line-height: 24px;
+  }
+
+  .testimonial-slider__star--filled {
+    color: var(--light-black);
+  }
+
+  /* Navigation Arrows */
+  .testimonial-slider__nav {
+    position: absolute;
+    bottom: -34px;
+    width: 39px;
+    height: 33px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    background-color: transparent;
+    border: none;
+    opacity: 1;
+    padding: 0;
+  }
+.testimonial-slider__nav:not(.disabled) svg path,
+.testimonial-slider__nav:not(.disabled) svg line{
+  stroke: var(--dark-primary-color);
+  color: var(--dark-primary-color);
+  
+}
+.testimonial-slider__nav.disabled {
+color: var(--light-black);
+
+}
+  .testimonial-slider__nav--prev {
+    left: 153px;
+  }
+  
+  .testimonial-slider__nav--next {
+    transform: scale(-1);
+    right: 136px;
+  }
+
+ 
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 749px) {
+   
+
+    .testimonial-slider__testimonial-text {
+      font-size: 18px;
+    }
+
+    .testimonial-slider__avatar {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+ 
+</style>
+
+<script type="module">
+  /**
+   * Modern Testimonial Slider - No 'this' keyword
+   * Features: ES6+, Touch/Swipe, Keyboard Navigation, Accessibility
+   */
+
+  const createTestimonialSlider = (container) => {
+    if (!container) {
+      console.warn('TestimonialSlider: Container element is required');
+      return null;
+    }
+
+    // Private state
+    let state = {
+      container,
+      slides: null,
+      slideItems: [],
+      prevBtn: null,
+      nextBtn: null,
+      currentIndex: 0,
+      totalSlides: 0,
+      isAnimating: false,
+      touchStartX: 0,
+      touchEndX: 0,
+      swipeThreshold: 50,
+      animationDuration: 500,
+    };
+
+    // Initialize elements
+    const initializeElements = () => {
+      try {
+        state.slides = state.container.querySelector('.testimonial-slider__slides');
+        state.slideItems = Array.from(state.container.querySelectorAll('.testimonial-slider__slide'));
+        state.prevBtn = state.container.querySelector('.testimonial-slider__nav--prev');
+        state.nextBtn = state.container.querySelector('.testimonial-slider__nav--next');
+        state.totalSlides = state.slideItems.length;
+
+        if (!state.slides || !state.slideItems.length) {
+          throw new Error('Required slider elements not found');
+        }
+      } catch (error) {
+        console.error('TestimonialSlider: Failed to initialize elements', error);
+        return false;
+      }
+      return true;
+    };
+
+    // Update slide position
+    const updateSlide = () => {
+      const translateX = -state.currentIndex * 100;
+      state.slides.style.transform = `translateX(${translateX}%)`;
+    };
+
+    // Update navigation buttons
+    const updateNavigation = () => {
+      if (state.prevBtn) {
+        const isFirstSlide = state.currentIndex === 0;
+        state.prevBtn.classList.add(isFirstSlide ? 'disabled' : '');
+        state.prevBtn.disabled = isFirstSlide;
+        state.prevBtn.setAttribute('aria-disabled', isFirstSlide.toString());
+      }
+
+      if (state.nextBtn) {
+        const isLastSlide = state.currentIndex === state.totalSlides - 1;
+        state.nextBtn.classList.add(isLastSlide ? 'disabled' : '');
+        state.nextBtn.disabled = isLastSlide;
+        state.nextBtn.setAttribute('aria-disabled', isLastSlide.toString());
+      }
+    };
+
+    // Update accessibility attributes
+    const updateAccessibility = () => {
+      state.slideItems.forEach((slide, index) => {
+        const isActive = index === state.currentIndex;
+        slide.setAttribute('aria-hidden', (!isActive).toString());
+        slide.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+
+      if (state.prevBtn) {
+        state.prevBtn.setAttribute(
+          'aria-label',
+          `Previous testimonial (${state.currentIndex + 1} of ${state.totalSlides})`
+        );
+      }
+      if (state.nextBtn) {
+        state.nextBtn.setAttribute(
+          'aria-label',
+          `Next testimonial (${state.currentIndex + 1} of ${state.totalSlides})`
+        );
+      }
+    };
+
+    // Set initial accessibility attributes
+    const setAccessibilityAttributes = () => {
+      state.container.setAttribute('role', 'region');
+      state.container.setAttribute('aria-label', 'Testimonial slider');
+
+      state.slides.setAttribute('role', 'list');
+      state.slides.setAttribute('aria-live', 'polite');
+
+      state.slideItems.forEach((slide, index) => {
+        slide.setAttribute('role', 'listitem');
+        slide.setAttribute('aria-hidden', (index !== 0).toString());
+        slide.setAttribute('aria-current', (index === 0 ? 'true' : 'false').toString());
+      });
+
+      updateAccessibility();
+    };
+
+    // Hide navigation when only one slide
+    const hideNavigation = () => {
+      state.prevBtn?.style.setProperty('display', 'none');
+      state.nextBtn?.style.setProperty('display', 'none');
+    };
+
+    // Go to specific slide
+    const goToSlide = (index) => {
+      if (state.isAnimating || index < 0 || index >= state.totalSlides) return;
+
+      state.isAnimating = true;
+      state.currentIndex = index;
+
+      updateSlide();
+      updateNavigation();
+      updateAccessibility();
+
+      setTimeout(() => {
+        state.isAnimating = false;
+      }, state.animationDuration);
+    };
+
+    // Navigate to previous slide
+    const prevSlide = () => {
+      if (state.isAnimating) return;
+
+      const newIndex = (state.currentIndex - 1 + state.totalSlides) % state.totalSlides;
+      goToSlide(newIndex);
+    };
+
+    // Navigate to next slide
+    const nextSlide = () => {
+      if (state.isAnimating) return;
+
+      const newIndex = (state.currentIndex + 1) % state.totalSlides;
+      goToSlide(newIndex);
+    };
+
+    // Handle touch start
+    const handleTouchStart = (event) => {
+      state.touchStartX = event.touches[0].clientX;
+    };
+
+    // Handle touch end
+    const handleTouchEnd = (event) => {
+      state.touchEndX = event.changedTouches[0].clientX;
+      handleSwipe();
+    };
+
+    // Handle swipe gesture
+    const handleSwipe = () => {
+      const diff = state.touchStartX - state.touchEndX;
+
+      if (Math.abs(diff) > state.swipeThreshold) {
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    };
+
+    // Handle keyboard navigation
+    const handleKeydown = (event) => {
+      const { key } = event;
+
+      switch (key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          prevSlide();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          nextSlide();
+          break;
+        case 'Home':
+          event.preventDefault();
+          goToSlide(0);
+          break;
+        case 'End':
+          event.preventDefault();
+          goToSlide(state.totalSlides - 1);
+          break;
+      }
+    };
+
+    // Handle focus management
+    const handleFocusIn = (event) => {
+      const slideIndex = state.slideItems.findIndex((slide) => slide.contains(event.target));
+
+      if (slideIndex !== -1 && slideIndex !== state.currentIndex) {
+        goToSlide(slideIndex);
+      }
+    };
+
+    // Bind event listeners
+    const bindEvents = () => {
+      state.prevBtn?.addEventListener('click', prevSlide);
+      state.nextBtn?.addEventListener('click', nextSlide);
+
+      state.container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      state.container.addEventListener('touchend', handleTouchEnd, { passive: true });
+      state.container.addEventListener('keydown', handleKeydown);
+      state.container.addEventListener('focusin', handleFocusIn);
+    };
+
+    // Initialize slider
+    const initializeSlider = () => {
+      if (state.totalSlides <= 1) {
+        hideNavigation();
+        return;
+      }
+
+      bindEvents();
+      updateNavigation();
+      setAccessibilityAttributes();
+    };
+
+    // Initialize
+    if (!initializeElements()) {
+      return null;
+    }
+
+    initializeSlider();
+
+    // Return public API
+    return {
+      goToSlide,
+      next: nextSlide,
+      prev: prevSlide,
+      getCurrentIndex: () => state.currentIndex,
+      getTotalSlides: () => state.totalSlides,
+      destroy: () => {
+        state.container.removeEventListener('touchstart', handleTouchStart);
+        state.container.removeEventListener('touchend', handleTouchEnd);
+        state.container.removeEventListener('keydown', handleKeydown);
+        state.container.removeEventListener('focusin', handleFocusIn);
+      },
+    };
+  };
+
+  // Initialize all sliders
+  const initializeSliders = () => {
+    try {
+      const sliders = document.querySelectorAll('.testimonial-slider');
+
+      if (sliders.length === 0) {
+        console.warn('No testimonial sliders found on the page');
+        return;
+      }
+
+      const sliderInstances = Array.from(sliders)
+        .map((slider) => {
+          try {
+            return createTestimonialSlider(slider);
+          } catch (error) {
+            console.error('Failed to initialize slider:', error);
+            return null;
+          }
+        })
+        .filter(Boolean);
+
+      window.testimonialSliders = sliderInstances;
+      console.log(`Initialized ${sliderInstances.length} testimonial slider(s)`);
+    } catch (error) {
+      console.error('Failed to initialize testimonial sliders:', error);
+    }
+  };
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSliders);
+  } else {
+    initializeSliders();
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Testimonial Slider",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Discover why customers love our products and services</p>",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_image",
+          "label": "Avatar Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "Sarah Johnson",
+          "label": "Customer Name"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "default": "<p>This product has completely transformed my daily routine. I can't imagine going back to my old products!</p>",
+          "label": "Testimonial Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Slider",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Johnson",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Michael Chen",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Emma Davis",
+            "rating": 5
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
