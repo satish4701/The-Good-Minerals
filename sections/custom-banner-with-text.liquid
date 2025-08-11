@@ -65,102 +65,123 @@
   #CustomBanner-{{ section.id }} .custom-banner__overlay {
   background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
   }
+{%- endstyle -%}
+<style>
   /* Custom Banner with Text Section Styles */
 
   .custom-banner {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  max-height: 960px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    max-height: 960px;
   }
 
   .custom-banner__background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   .custom-banner__background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   .custom-banner__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
   }
 
   .custom-banner__container {
-  position: relative;
-  z-index: 3;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0;
+    position: relative;
+    z-index: 3;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
   }
 
   .custom-banner__heading {
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 100%;
-  letter-spacing: 0;
-  color:var(--white);
-  margin:0;
-
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: var(--white);
+    margin: 0;
   }
-  .custom-banner__heading p{
-  margin: 0;
+  .custom-banner__heading p {
+    margin: 0;
   }
   .custom-banner__text {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: 0;
-  max-width:450px;
-  width:100%;
-  margin:20px 0;
-  color: var(--white);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0;
+    max-width: 450px;
+    width: 100%;
+    margin: 20px 0;
+    color: var(--white);
   }
 
   .custom-banner__button-wrapper {
-  margin-top: 2rem;
+    margin-top: 2rem;
   }
 
   .custom-banner__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 108px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  height: 56px;
-  line-height: 56px;
-  font-size: 14px;
-  white-space: nowrap;
-  min-width: 218px;
-  border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 108px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 56px;
+    line-height: 56px;
+    font-size: 14px;
+    white-space: nowrap;
+    min-width: 218px;
+    border: none;
   }
   .custom-banner__button::before,
   .custom-banner__button::after {
-  content: unset
+    content: unset;
   }
-{%- endstyle -%}
+  @media (max-width: 991px) {
+    .custom-banner__heading {
+      font-size: 40px;
+    }
+  }
+  @media (max-width: 767px) {
+    .custom-banner__background::before {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      content: '';
+      z-index: 1;
+    }
+    .custom-banner__background-image {
+      object-position: 60% center !important
+    ;
+    }
+  }
+</style>
 {% schema %}
 {
   "name": "Custom Banner with Text",
