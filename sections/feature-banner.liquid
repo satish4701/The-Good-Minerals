@@ -9,13 +9,13 @@
               {{ section.settings.heading }}
             </h2>
           {%- endif -%}
-          
+
           {%- if section.settings.description != blank -%}
             <div class="feature-banner__description">
               {{ section.settings.description }}
             </div>
           {%- endif -%}
-          
+
           <div class="feature-banner__buttons">
             {%- if section.settings.button_primary_label != blank -%}
               <a
@@ -30,7 +30,7 @@
                 {{ section.settings.button_primary_label | escape }}
               </a>
             {%- endif -%}
-            
+
             {%- if section.settings.button_secondary_label != blank -%}
               <a
                 {% if section.settings.button_secondary_link != blank %}
@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Right Panel -->
       <div class="feature-banner__right-panel">
         <div class="feature-banner__features">
@@ -55,15 +55,10 @@
             <div class="feature-banner__feature" {{ block.shopify_attributes }}>
               {%- if block.settings.image != blank -%}
                 <div class="feature-banner__feature-icon">
-                  {{
-                    block.settings.image
-                    | image_url: width: 60
-                    | image_tag:  
-                      class: 'feature-banner__feature-image'
-                  }}
+                  {{ block.settings.image | image_url: width: 60 | image_tag: class: 'feature-banner__feature-image' }}
                 </div>
               {%- endif -%}
-              
+
               {%- if block.settings.title != blank -%}
                 <div class="feature-banner__feature-title">
                   {{ block.settings.title }}
@@ -102,9 +97,6 @@
     align-items: center;
   }
 
-
- 
-
   .feature-banner__content {
     display: flex;
     flex-direction: column;
@@ -124,11 +116,11 @@
     color: var(--dark-primary-color);
   }
 
-  .feature-banner__heading p{
+  .feature-banner__heading p {
     margin: 0;
   }
 
-  .feature-banner__description P{
+  .feature-banner__description P {
     font-size: 14px;
     line-height: 25.5px;
     color: var(--light-black);
@@ -141,9 +133,9 @@
     display: flex;
     gap: 25px;
   }
-.feature-banner__left-panel {
+  .feature-banner__left-panel {
     max-width: 48.92%;
-}
+  }
 
   .feature-banner__button {
     display: inline-block;
@@ -157,7 +149,7 @@
     border: 1px solid transparent;
     max-width: 197px;
     width: 100%;
-    height:44px;
+    height: 44px;
     line-height: 44px;
   }
 
@@ -173,11 +165,9 @@
     border-color: transparent;
   }
 
-
   .feature-banner__right-panel {
-    width:100%
+    width: 100%;
   }
-
 
   .feature-banner__features {
     display: grid;
@@ -185,7 +175,6 @@
     gap: 50px 0px;
     justify-content: space-between;
   }
-
 
   .feature-banner__feature {
     display: flex;
@@ -206,13 +195,11 @@
     transition: transform 0.3s ease;
   }
 
-
   .feature-banner__feature-image {
     width: 40px;
     height: 40px;
     object-fit: contain;
   }
-
 
   .feature-banner__feature-title {
     font-size: 14px;
@@ -222,35 +209,57 @@
   }
 
   /* Responsive adjustments */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 1200px) {
     .feature-banner__container {
-      text-align: center;
+      gap: 100px;
     }
-    
-    .feature-banner__buttons {
-      justify-content: center;
+  }
+  @media screen and (max-width: 1024px) {
+    .feature-banner__container {
+      gap: 50px;
+      flex-direction: column;
     }
-    
-    .feature-banner__features {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    .feature-banner__heading {
+      font-size: 36px;
+    }
+    .feature-banner__left-panel {
+      max-width: 100%;
+    }
+    .feature-banner__content {
+      max-width: 75%;
+    }
+    .feature-banner__buttons a {
+      flex: 1;
+      max-width: none;
     }
   }
 
-  @media screen and (max-width: 480px) {
-    .feature-banner__features {
-      grid-template-columns: 1fr;
-      gap: 16px;
+  @media screen and (max-width: 575px) {
+    .feature-banner__content {
+      max-width: 100%;
     }
-    
+    .feature-banner__heading {
+      font-size: 32px;
+    }
+    .feature-banner__buttons {
+      gap: 16px;
+      flex-direction: column;
+    }
+
     .feature-banner__feature-icon {
       width: 60px;
       height: 60px;
     }
-    
+
     .feature-banner__feature-image {
       width: 30px;
       height: 30px;
+    }
+    .feature-banner__container {
+      gap: 30px;
+    }
+    .feature-banner__features {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
@@ -305,7 +314,7 @@
       "step": 10,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 50 
+      "default": 50
     },
     {
       "type": "range",
@@ -315,7 +324,7 @@
       "step": 10,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 50 
+      "default": 50
     }
   ],
   "blocks": [
