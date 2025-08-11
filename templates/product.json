@@ -54,12 +54,19 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "d4f74f8f-f747-450c-8437-353b906a74f3": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
         }
       },
       "block_order": [
         "vendor",
         "title",
         "price",
+        "d4f74f8f-f747-450c-8437-353b906a74f3",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
