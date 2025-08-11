@@ -1,7 +1,7 @@
 <header class="custom-header-wrapper">
   <div class="page-width">
     <div class="custom-header-inner">
-      <a href="{{ shop.url }}" class="custom-header-logo desktop-logo">
+      <a href="/" class="custom-header-logo desktop-logo">
         {% if section.settings.logo_desktop != blank %}
           <img
             src="{{ section.settings.logo_desktop | img_url: '300x' }}"
@@ -13,7 +13,7 @@
           <span>{{ section.settings.logo_alt_text }}</span>
         {% endif %}
       </a>
-      <a href="{{ shop.url }}" class="custom-header-logo mobile-logo">
+      <a href="/" class="custom-header-logo mobile-logo">
         {% if section.settings.logo_mobile != blank %}
           <img
             src="{{ section.settings.logo_mobile | img_url: '200x' }}"
@@ -51,10 +51,10 @@
           </a>
         {% endif %}
         {% if section.settings.show_cart %}
-          <button type="button" class="custom-header-icon cart-icon" aria-label="Cart" data-action="toggle-cart">
+          <a href="{{ routes.cart_url }}" class="custom-header-icon cart-icon" aria-label="Cart" data-action="toggle-cart">
             <img src="{{'icon-bag.svg' | asset_url}}" alt="icon cart" width="24" height="24">
-            <span class="cart-count-bubble" style="display: none;">0</span>
-          </button>
+            <span class="cart-count-bubble" style="display: none;">{{ cart.item_count }}</span>
+          </a>
         {% endif %}
         <button class="custom-header-mobile-menu-toggle" aria-label="Open Menu">
           <img src="{{ 'icon-menu.svg' | asset_url }}" alt="icon-menu" width="24" height="24">
@@ -91,6 +91,11 @@
     right: 0;
     padding: 35px 0;
     z-index: 999;
+  }
+  .other-pages   .custom-header-wrapper {
+    top: 0;
+    position: relative;
+    background-color: var(--primary-color);
   }
   .custom-header-inner {
     display: flex;
@@ -141,7 +146,7 @@
     font-weight: 600;
     text-decoration: none;
     font-size: 14px;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
     border: none;
     line-height: 40px;
     cursor: pointer;
@@ -150,7 +155,8 @@
     margin-right: 10px;
   }
   .custom-header-cta:hover {
-    background: var(--primary-color);
+    background: var(--dark-primary-color);
+    color: var(--white);
   }
   .custom-header-icon {
     background: none;
@@ -252,11 +258,15 @@
     background-color: var(--primary-color);
   }
   .custom-header-wrapper.sticky .custom-header-nav a,
-  .custom-header-wrapper.sticky .custom-header-cta {
+  .custom-header-wrapper.sticky .custom-header-cta ,
+  .other-pages .custom-header-cta ,
+  .other-pages  .custom-header-nav a{
     color: var(--light-black);
   }
   .custom-header-wrapper.sticky .custom-header-logo img,
-  .custom-header-wrapper.sticky .custom-header-icon img {
+  .custom-header-wrapper.sticky .custom-header-icon img,
+  .other-pages .custom-header-icon img,
+  .other-pages .custom-header-logo img {
     filter: invert(1);
   }
   @media (max-width: 1280px) {
@@ -286,9 +296,16 @@
     .custom-header-cta {
       color: var(--light-black);
       margin: 0;
+      min-width: auto
     }
     .custom-header-wrapper.sticky .custom-header-logo img {
       filter: unset;
+    }
+    .custom-header-icon.cart-icon{
+      display: block;
+    }
+    .custom-header-icon.cart-icon img{
+      filter: invert(1);
     }
   }
   @media (max-width: 991px) {
@@ -305,6 +322,9 @@
       top: 15px;
       left: 15px;
     }
+    .custom-header-actions{
+      gap:10px
+    }
   }
 </style>
 
@@ -313,7 +333,6 @@
     var menuToggle = document.querySelector('.custom-header-mobile-menu-toggle');
     var mobileMenu = document.querySelector('.custom-header-mobile-menu');
     var menuClose = document.querySelector('.custom-header-mobile-menu-close');
-    var cartToggle = document.querySelector('[data-action="toggle-cart"]');
 
     // Mobile menu functionality
     if (menuToggle && mobileMenu && menuClose) {
@@ -334,29 +353,7 @@
       });
     }
 
-    // Cart toggle functionality
-    if (cartToggle) {
-      cartToggle.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        // Try to trigger Dawn's cart drawer
-        const cartDrawer = document.querySelector('cart-drawer');
-        if (cartDrawer && typeof cartDrawer.open === 'function') {
-          cartDrawer.open();
-        } else {
-          // Fallback: try to find and click Dawn's cart button
-          const dawnCartButton = document.querySelector(
-            '[data-action="toggle-cart"], .header__icon--cart, [aria-label*="cart" i]'
-          );
-          if (dawnCartButton) {
-            dawnCartButton.click();
-          } else {
-            // Last resort: navigate to cart page
-            window.location.href = '/cart';
-          }
-        }
-      });
-    }
+    
 
     // Update cart count when cart is updated
     function updateCartCount() {

@@ -121,14 +121,23 @@
 
                         <!-- Rating -->
                         <div class="product-card__rating">
-                          <div class="stars">
-                            <span class="star star--filled">★</span>
-                            <span class="star star--filled">★</span>
-                            <span class="star star--filled">★</span>
-                            <span class="star star--filled">★</span>
-                            <span class="star star--half">★</span>
-                          </div>
-                          <span class="rating-text">(24 Reviews)</span>
+                          {% comment %}
+                            <div class="stars">
+                              <span class="star star--filled">★</span>
+                              <span class="star star--filled">★</span>
+                              <span class="star star--filled">★</span>
+                              <span class="star star--filled">★</span>
+                              <span class="star star--half">★</span>
+                            </div>
+                            <span class="rating-text">(24 Reviews)</span>
+                          {% endcomment %}
+                          <div
+                            class="yotpo-widget-instance"
+                            data-yotpo-instance-id="1190577"
+                            data-yotpo-product-id="{{product.id}}"
+                            data-yotpo-cart-product-id="{{item.product.id}}"
+                            data-yotpo-section-id="{{template.name}}"
+                          ></div>
                         </div>
 
                         <!-- Price -->
@@ -472,42 +481,14 @@
   .product-card__rating {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     gap: 6px;
-    margin: 20px 0 8x;
+    margin: 10px 0 2px;
   }
-
-  .product-card__rating .stars {
-    display: flex;
-    gap: 1px;
-  }
-
-  .product-card__rating.star {
-    color: #ddd;
-    font-size: 14px;
-  }
-
-  .product-card__rating .star--filled {
-    color: var(--light-black);
-  }
-
-  .product-card__rating .star--half {
-    color: var(--light-black);
-    position: relative;
-  }
-
-  .product-card__rating .star--half::after {
-    content: '★';
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #ddd;
-    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
-  }
-
-  .rating-text {
-    font-size: 0.7rem;
-    color: #666666;
+  p.yotpo-sr-bottom-line-text.yotpo-sr-bottom-line-text--right-panel {
+    font-size: 13px !important;
+    line-height: 24px !important;
+    font-weight: 500 !important;
   }
 
   /* Price */
@@ -552,6 +533,7 @@
     width: 100%;
     height: 44px;
     line-height: 44px;
+    border: 1px solid transparent;
   }
 
   .product-card__button:disabled {
@@ -564,7 +546,12 @@
     background-color: var(--dark-primary-color);
     color: var(--white);
   }
-
+  .product-card__button:hover,
+  .color-popup-card__button:hover {
+    background: transparent !important;
+    color: var(--dark-primary-color) !important;
+    border-color: var(--dark-primary-color) !important;
+  }
   /* Color Popup Card Styles */
   .color-popup-card {
     position: absolute;
@@ -814,9 +801,8 @@
     .top-rated-products__cards {
       grid-template-columns: repeat(2, 1fr);
     }
-    .top-rated-products__heading{
-        font-size:36px;
-
+    .top-rated-products__heading {
+      font-size: 36px;
     }
   }
 
@@ -827,8 +813,8 @@
     .top-rated-products__cards {
       gap: 12px;
     }
-    .top-rated-products__header{
-        margin-bottom: 35px;
+    .top-rated-products__header {
+      margin-bottom: 35px;
     }
   }
 
@@ -840,9 +826,8 @@
       height: auto;
       max-height: 100vw;
     }
-     .top-rated-products__heading{
-        font-size:28px;
-        
+    .top-rated-products__heading {
+      font-size: 28px;
     }
   }
 </style>
@@ -1115,7 +1100,7 @@
             notification.parentNode.removeChild(notification);
           }
         }, 300);
-      }, 3000);
+      }, 1000);
     };
 
     // Initialize when DOM is ready

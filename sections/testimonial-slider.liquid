@@ -349,7 +349,7 @@
 
 <script type="module">
   /**
-   * Modern Testimonial Slider - No 'this' keyword
+   * Modern Testimonial Slider 
    * Features: ES6+, Touch/Swipe, Keyboard Navigation, Accessibility
    */
 
@@ -402,20 +402,20 @@
 
     // Update navigation buttons
     const updateNavigation = () => {
-      if (state.prevBtn) {
-        const isFirstSlide = state.currentIndex === 0;
-        state.prevBtn.classList.add(isFirstSlide ? 'disabled' : '');
-        state.prevBtn.disabled = isFirstSlide;
-        state.prevBtn.setAttribute('aria-disabled', isFirstSlide.toString());
-      }
+  if (state.prevBtn) {
+    const isFirstSlide = state.currentIndex === 0;
+    state.prevBtn.classList.toggle('disabled', isFirstSlide);
+    state.prevBtn.disabled = isFirstSlide;
+    state.prevBtn.setAttribute('aria-disabled', isFirstSlide.toString());
+  }
 
-      if (state.nextBtn) {
-        const isLastSlide = state.currentIndex === state.totalSlides - 1;
-        state.nextBtn.classList.add(isLastSlide ? 'disabled' : '');
-        state.nextBtn.disabled = isLastSlide;
-        state.nextBtn.setAttribute('aria-disabled', isLastSlide.toString());
-      }
-    };
+  if (state.nextBtn) {
+    const isLastSlide = state.currentIndex === state.totalSlides - 1;
+    state.nextBtn.classList.toggle('disabled', isLastSlide);
+    state.nextBtn.disabled = isLastSlide;
+    state.nextBtn.setAttribute('aria-disabled', isLastSlide.toString());
+  }
+};
 
     // Update accessibility attributes
     const updateAccessibility = () => {
