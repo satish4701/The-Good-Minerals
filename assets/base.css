@@ -14,7 +14,9 @@
   --light-secondary-color: #FBF7F8;
   --icon-color:#F8EAEE;
   --white: #FFFFFF;
-  --light-black:#272525
+  --light-black:#272525;
+  --border-color:#F1D2DB;
+  --light-bg:#f6e3e9;
 }
 
 .product-card-wrapper .card,
@@ -3602,6 +3604,12 @@ details-disclosure > details {
 
 .progress-bar .progress-bar-value {
   display: block;
+}
+@media (max-width:991px){
+  .page-width,
+  .utility-bar__grid.page-width{
+    padding: 0 15px;
+  }
 }
 
 @keyframes indeterminateAnimation {

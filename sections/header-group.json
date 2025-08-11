@@ -40,7 +40,7 @@
       "name": "Custom Header",
       "settings": {
         "logo_desktop": "shopify://shop_images/gm-logo-full-horizontal.svg",
-        "logo_mobile": "shopify://shop_images/sym-air.svg",
+        "logo_mobile": "shopify://shop_images/mobile-logo.svg",
         "logo_alt_text": "The Good Mineral",
         "main_menu": "main-navigation",
         "cta_label": "Find My Shade",

@@ -1,0 +1,523 @@
+<footer class="custom-footer section-{{ section.id }}-padding">
+  <div class="page-width">
+    <!-- Newsletter Section -->
+    <div class="custom-footer__newsletter">
+      <div class="custom-footer__newsletter-content">
+        <!-- Logo and Brand -->
+        {%- if section.settings.logo_image != blank -%}
+          <div class="custom-footer__logo">
+            {{
+              section.settings.logo_image
+              | image_url: width: 364
+              | image_tag: class: 'custom-footer__logo-img', loading: 'lazy'
+            }}
+          </div>
+        {%- endif -%}
+
+        <div class="custom-footer__brand-text">
+          {{ section.settings.brand_text }}
+        </div>
+
+        <!-- Newsletter Call to Action -->
+        {%- if section.settings.newsletter_heading != blank -%}
+          <h3 class="custom-footer__newsletter-heading">
+            {{ section.settings.newsletter_heading }}
+          </h3>
+        {%- endif -%}
+
+        <!-- Newsletter Form -->
+        <!-- Newsletter Form -->
+        {%- form 'customer', id: 'ContactFooter', class: 'custom-footer__newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="custom-footer__newsletter-input-group">
+            <div class="field">
+              <input
+                id="NewsletterForm--{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="custom-footer__newsletter-input"
+                value="{{ form.email }}"
+                aria-required="true"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                {% if form.errors %}
+                  autofocus
+                  aria-invalid="true"
+                  aria-describedby="ContactFooter-error"
+                {% elsif form.posted_successfully? %}
+                  aria-describedby="ContactFooter-success"
+                {% endif %}
+                placeholder="{{ section.settings.email_placeholder }}"
+                required
+              >
+
+              <button
+                type="submit"
+                class="custom-footer__newsletter-button"
+                name="commit"
+                id="Subscribe"
+                aria-label="{{ section.settings.subscribe_button_text }}"
+              >
+                {{ section.settings.subscribe_button_text }}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                <span class="svg-wrapper">
+                  {{- 'icon-error.svg' | inline_asset_content -}}
+                </span>
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email -}}
+              </small>
+            {%- endif -%}
+          </div>
+          {%- if form.posted_successfully? -%}
+            <h3
+              class="newsletter-form__message newsletter-form__message--success form__message"
+              id="ContactFooter-success"
+              tabindex="-1"
+              autofocus
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-success.svg' | inline_asset_content -}}
+              </span>
+              {{- 'newsletter.success' | t }}
+            </h3>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="custom-footer__navigation">
+      <div class="custom-footer__nav-columns">
+        <!-- Shop Column -->
+        <div class="custom-footer__nav-column">
+          <h4 class="custom-footer__nav-heading">{{ section.settings.shop_heading }}</h4>
+          <ul class="custom-footer__nav-list shop">
+            {%- assign shop_menu = linklists[section.settings.shop_menu] -%}
+            {%- if shop_menu.links.size > 0 -%}
+              {%- for link in shop_menu.links -%}
+                <li class="custom-footer__nav-item">
+                  <a href="{{ link.url }}" class="custom-footer__nav-link">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </div>
+
+        <!-- Help Column -->
+        <div class="custom-footer__nav-column">
+          <h4 class="custom-footer__nav-heading">{{ section.settings.help_heading }}</h4>
+          <ul class="custom-footer__nav-list">
+            {%- assign help_menu = linklists[section.settings.help_menu] -%}
+            {%- if help_menu.links.size > 0 -%}
+              {%- for link in help_menu.links -%}
+                <li class="custom-footer__nav-item">
+                  <a href="{{ link.url }}" class="custom-footer__nav-link">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </div>
+
+        <!-- About Column -->
+        <div class="custom-footer__nav-column">
+          <h4 class="custom-footer__nav-heading">{{ section.settings.about_heading }}</h4>
+          <ul class="custom-footer__nav-list">
+            {%- assign about_menu = linklists[section.settings.about_menu] -%}
+            {%- if about_menu.links.size > 0 -%}
+              {%- for link in about_menu.links -%}
+                <li class="custom-footer__nav-item">
+                  <a href="{{ link.url }}" class="custom-footer__nav-link">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="custom-footer__copyright">
+      <p class="custom-footer__copyright-text">
+        {{ section.settings.copyright_text | replace: '[year]', 'now' | date: '%Y' }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Background Pattern -->
+  <div class="custom-footer__pattern"></div>
+</footer>
+
+<style>
+  .custom-footer {
+    background-color: var(--light-bg);
+    position: relative;
+    overflow: hidden;
+  }
+.custom-footer::before{
+  position: absolute;
+  content: '';
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/footer-bg.png');
+  background-size: cover;
+}
+  .custom-footer__newsletter {
+    padding: 36px 0 33px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .custom-footer__newsletter-content {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .custom-footer__logo {
+    margin-bottom: 38px;
+  }
+
+  .custom-footer__logo-img {
+    max-width: 364px;
+    width: 100%;
+    height: 48px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  .custom-footer__brand-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--light-black);
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .custom-footer__newsletter-heading {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--light-black);
+    margin: 0 0 10px 0;
+    line-height: 32px;
+  }
+
+  .custom-footer__newsletter-form {
+    margin: 0;
+  }
+
+  .custom-footer__newsletter-input-group {
+    display: flex;
+    gap: 12px;
+    max-width: 426px;
+    height: 44px;
+    margin: 0 auto;
+    border: none;
+    position: relative;
+  }
+  .custom-footer .field:before,
+  .custom-footer .field:after {
+    content: unset;
+  }
+
+  .custom-footer__newsletter-input {
+    flex: 1;
+    padding: 0;
+    border: none;
+    border-radius: 108px;
+    font-size: 14px;
+    background-color: var(--white);
+    color: var(--light-black);
+    outline: none;
+    font-weight: 500;
+    padding-left: 24px;
+  }
+  .custom-footer__newsletter-input:focus{
+    box-shadow: none;
+   outline-offset:none
+  }
+
+  .custom-footer__newsletter-input::placeholder {
+    color: var(--light-black);
+  }
+
+  .custom-footer__newsletter-button {
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 146px;
+    line-height: 44px;
+    background-color: var(--dark-primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 108px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .custom-footer__newsletter-button:hover {
+    background-color: var(--dark-primary-color);
+  }
+
+  .custom-footer__navigation {
+    position: relative;
+    z-index: 2;
+  }
+
+  .custom-footer__nav-columns {
+    display: flex;
+    margin: 0 auto;
+    max-width: 870px;
+    justify-content: space-between;
+  }
+
+  .custom-footer__nav-heading {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--light-black);
+    margin: 0 0 15px 0;
+    letter-spacing: 0;
+    line-height: 32px;
+  }
+
+  .custom-footer__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+.custom-footer__nav-list.shop{
+  column-count: 2;
+  display: block;
+
+}
+.custom-footer__nav-column:first-of-type{
+  width: 50%;
+}
+.custom-footer__nav-column:nth-of-type(2),
+.custom-footer__nav-column:last-of-type(2){
+  width: 25%;
+}
+  .custom-footer__nav-item {
+    margin-bottom: 5px;
+  }
+
+  .custom-footer__nav-link {
+    color: var(--light-black);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    line-height: 32px;
+  }
+
+  .custom-footer__copyright {
+    padding: 24px 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .custom-footer__copyright-text {
+    font-size: 14px;
+    color: var(--light-black);
+    margin: 0;
+    line-height: 32px;
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 990px) {
+    .custom-footer__nav-columns {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .custom-footer__newsletter-input-group {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .custom-footer__newsletter-button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .custom-footer__newsletter {
+      padding: 40px 0 30px;
+    }
+
+    .custom-footer__navigation {
+      padding: 30px 0;
+    }
+
+    .custom-footer__nav-columns {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .custom-footer__nav-column {
+      text-align: center;
+    }
+
+    .custom-footer__nav-heading {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .custom-footer__nav-item {
+      margin-bottom: 10px;
+    }
+
+    .custom-footer__nav-link {
+      font-size: 15px;
+    }
+
+    .custom-footer__copyright {
+      padding: 24px 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .custom-footer__newsletter {
+      padding: 30px 0 20px;
+    }
+
+    .custom-footer__brand-text {
+      font-size: 16px;
+    }
+
+    .custom-footer__newsletter-heading {
+      font-size: 18px;
+    }
+
+    .custom-footer__newsletter-input,
+    .custom-footer__newsletter-button {
+      padding: 12px 16px;
+      font-size: 15px;
+    }
+
+    .custom-footer__navigation {
+      padding: 24px 0;
+    }
+
+    .custom-footer__copyright {
+      padding: 20px 0;
+    }
+
+    .custom-footer__copyright-text {
+      font-size: 13px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo and Brand"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand Text",
+      "default": "THE GOOD MINERAL"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Section"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter Heading",
+      "default": "Get the latest from The Good Mineral"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Input Placeholder",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_button_text",
+      "label": "Subscribe Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Headings"
+    },
+    {
+      "type": "text",
+      "id": "shop_heading",
+      "label": "Shop Column Heading",
+      "default": "Shop"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop Menu"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Help Column Heading",
+      "default": "Help"
+    },
+    {
+      "type": "link_list",
+      "id": "help_menu",
+      "label": "Help Menu"
+    },
+    {
+      "type": "text",
+      "id": "about_heading",
+      "label": "About Column Heading",
+      "default": "About"
+    },
+    {
+      "type": "link_list",
+      "id": "about_menu",
+      "label": "About Menu"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Copyright © [year] THE GOOD MINERAL"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Custom Footer"
+    }
+  ]
+}
+{% endschema %}

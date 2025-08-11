@@ -1,0 +1,294 @@
+<section class="skin-loving-feature section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="skin-loving-feature__container">
+      
+      <!-- Left Section - Image -->
+      <div class="skin-loving-feature__image-section">
+        {%- if section.settings.feature_image != blank -%}
+          <div class="skin-loving-feature__image-wrapper">
+            {{
+              section.settings.feature_image
+              | image_url: width: 600
+              | image_tag: class: 'skin-loving-feature__image', loading: 'lazy'
+            }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Right Section - Content -->
+      <div class="skin-loving-feature__content-section">
+        <div class="skin-loving-feature__content">
+          
+          <!-- Logo -->
+          {%- if section.settings.logo_image != blank -%}
+            <div class="skin-loving-feature__logo">
+              {{
+                section.settings.logo_image
+                | image_url: width: 155
+                | image_tag: class: 'skin-loving-feature__logo-img', loading: 'lazy'
+              }}
+            </div>
+          {%- endif -%}
+
+          <!-- Heading -->
+          {%- if section.settings.heading != blank -%}
+            <h2 class="skin-loving-feature__heading">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+
+          <!-- Description -->
+          {%- if section.settings.description != blank -%}
+            <div class="skin-loving-feature__description">
+              {{ section.settings.description }}
+            </div>
+          {%- endif -%}
+
+          <!-- Button -->
+          {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+            <a
+              href="{{ section.settings.button_link }}"
+              class="skin-loving-feature__button"
+            >
+              {{ section.settings.button_text }}
+            </a>
+          {%- endif -%}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .skin-loving-feature {
+    padding: 84px 0 50px;
+    background-color: var(--white);
+  }
+
+  .skin-loving-feature__container {
+    display: flex;
+    align-items: center;
+    gap: 53px;
+    max-width: 1021px;
+    margin: 0 auto;
+  }
+
+  .skin-loving-feature__image-section {
+    max-width: 427px;
+    width: 100%;
+  }
+
+  .skin-loving-feature__image-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 10px solid var(--border-color);
+  }
+
+  .skin-loving-feature__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+  }
+
+  .skin-loving-feature__content-section {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .skin-loving-feature__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skin-loving-feature__logo {
+    margin-bottom: 8px;
+  }
+
+  .skin-loving-feature__logo-img {
+    width: 155px;
+    height: 64px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .skin-loving-feature__heading {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 30px 0 30px;
+    color: var(--light-black);
+    letter-spacing: 0;
+  }
+
+  .skin-loving-feature__description p {
+    font-size: 18px;
+    line-height:32px;
+    color: var(--light-black);
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+
+
+  .skin-loving-feature__description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .skin-loving-feature__button {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    align-self: flex-start;
+    margin-top: 20px;
+    width: 170px;
+    height: 44px;
+    line-height: 44px;
+    background-color: var(--dark-primary-color);
+  }
+
+
+  /* Responsive Design */
+  @media (max-width: 990px) {
+    .skin-loving-feature {
+      padding: 60px 0;
+    }
+
+    .skin-loving-feature__container {
+      flex-direction: column;
+      gap: 40px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .skin-loving-feature__image-section,
+    .skin-loving-feature__content-section {
+      max-width: 100%;
+    }
+
+    .skin-loving-feature__heading {
+      font-size: 32px;
+    }
+
+    .skin-loving-feature__button {
+      align-self: center;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .skin-loving-feature {
+      padding: 40px 0;
+    }
+
+    .skin-loving-feature__container {
+      padding: 24px;
+      gap: 32px;
+    }
+
+    .skin-loving-feature__content {
+      gap: 20px;
+    }
+
+    .skin-loving-feature__heading {
+      font-size: 28px;
+    }
+
+    .skin-loving-feature__description {
+      font-size: 15px;
+    }
+
+    .skin-loving-feature__button {
+      padding: 14px 28px;
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .skin-loving-feature__container {
+      padding: 20px;
+      gap: 24px;
+    }
+
+    .skin-loving-feature__heading {
+      font-size: 24px;
+    }
+
+    .skin-loving-feature__description {
+      font-size: 14px;
+    }
+
+    .skin-loving-feature__button {
+      padding: 12px 24px;
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Skin Loving Feature",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image (Two Sisters)"
+    },
+    {
+      "type": "header",
+      "content": "Content Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo/Icon"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Skin Loving"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Formulated from scratch by two sisters with sensitive, acne-prone skin this makeup is skin-loving, effortless and totally 'wow' looking! We are here to help you make the most of your looks today, as-in now, even if you are on treatments or a careful skincare routine. Face your day with confidence.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "About Us"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skin Loving Feature",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

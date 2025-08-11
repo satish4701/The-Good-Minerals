@@ -82,19 +82,19 @@
     "top_rated_products_degGK6": {
       "type": "top-rated-products",
       "blocks": {
-        "product_UCAKNR": {
+        "product_6LrKKK": {
           "type": "product",
           "settings": {
             "product": "loves-you-back-3in1-powder-foundation"
           }
         },
-        "product_rGGNEg": {
+        "product_WrnKit": {
           "type": "product",
           "settings": {
             "product": "blush-boost-mineral-powder"
           }
         },
-        "product_GCWKxd": {
+        "product_6Ea6fg": {
           "type": "product",
           "settings": {
             "product": "iconic-flat-blending-brush"
@@ -102,9 +102,9 @@
         }
       },
       "block_order": [
-        "product_UCAKNR",
-        "product_rGGNEg",
-        "product_GCWKxd"
+        "product_6LrKKK",
+        "product_WrnKit",
+        "product_6Ea6fg"
       ],
       "name": "Top Rated Products",
       "settings": {
@@ -267,19 +267,41 @@
     "three_column_feature_9bXeEK": {
       "type": "three-column-feature",
       "name": "Three Column Feature",
+      "settings": {}
+    },
+    "skin_loving_feature_N3H3aj": {
+      "type": "skin-loving-feature",
+      "name": "Skin Loving Feature",
       "settings": {
-        "left_heading": "Handmade. Vegan. Iconic.",
-        "left_description": "Make your powder foundation glow with this brush.",
-        "left_image": "shopify://shop_images/dbcca5a9b6b9cac33b1588bee4f172ca4080c8ef.png",
-        "left_button_text": "Get This Bundle",
-        "left_button_link": "",
-        "middle_heading": "Bundle & Save",
-        "middle_description": "<p><strong>Finish your look with our Glow Box Bundle. </strong> </p><p>Bronzer, Contour, Highlighter, Blush & Brush. All of the magical skincare benefits and everything you need to finish your look in a stunning pink and gold box at an amazing price!</p>",
-        "middle_button_text": "Get This Bundle",
-        "middle_button_link": "#",
-        "video_poster": "shopify://shop_images/12441731db0bfc54a8121dfd8851f44676e550e6.png",
-        "video_url": "shopify://collections/frontpage",
-        "right_heading": "Natural Coverage For Marks & Scars"
+        "feature_image": "shopify://shop_images/skin-image.png",
+        "logo_image": "shopify://shop_images/gm-logo-symbol.png",
+        "heading": "Skin Loving",
+        "description": "<p>Formulated from scratch by two sisters with sensitive, acne-prone skin this makeup is skin-loving, effortless and totally 'wow' looking! We are here to help you make the most of your looks today, as-in now, even if you are on treatments or a careful skincare routine. Face your day with confidence.</p>",
+        "button_text": "About Us",
+        "button_link": "#"
+      }
+    },
+    "customer_support_feature_Eg7aYD": {
+      "type": "customer-support-feature",
+      "blocks": {
+        "testimonial_tUfbfU": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "<p>Thank you for helping me choose such a spot on color match and for a customer service experience that was truly exceptional.</p>",
+            "testimonial_author": "Brandie Osborne"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_tUfbfU"
+      ],
+      "name": "Customer Support Feature",
+      "settings": {
+        "heading": "<p>Here for <strong>You</strong></p>",
+        "description": "<p>Your purchasing joy, 5-star reviews and return business means a lot to us and it is our goal that you are happy with your purchase. If there are any issues - like wrong shade -  with your TGM goodies we will fix it fast and without fuss!</p>",
+        "contact_text": "All you need to do is email us at:",
+        "email_address": "care@thegoodmineral.com",
+        "chat_message": "or message us in the gorgias chat below!"
       }
     }
   },
@@ -290,6 +312,8 @@
     "promotional_banner_cPCxrJ",
     "feature_banner_Yhbtn8",
     "testimonial_slider_pmnwch",
-    "three_column_feature_9bXeEK"
+    "three_column_feature_9bXeEK",
+    "skin_loving_feature_N3H3aj",
+    "customer_support_feature_Eg7aYD"
   ]
 }

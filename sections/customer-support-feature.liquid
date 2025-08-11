@@ -1,0 +1,369 @@
+<section class="customer-support-feature section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="customer-support-feature__container">
+      <!-- Left Column - Customer Support Information -->
+      <div class="customer-support-feature__left-column">
+        <div class="customer-support-feature__content">
+          <!-- Heading -->
+          {%- if section.settings.heading != blank -%}
+            <h2 class="customer-support-feature__heading">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+
+          <!-- Description -->
+          {%- if section.settings.description != blank -%}
+            <div class="customer-support-feature__description">
+              {{ section.settings.description }}
+            </div>
+          {%- endif -%}
+
+          <!-- Contact Box -->
+          <div class="customer-support-feature__contact-box">
+            <p class="customer-support-feature__contact-text">
+              {{ section.settings.contact_text }}
+            </p>
+            <div class="customer-support-feature__email-section">
+              <img
+                class="customer-support-feature__email-icon"
+                src="{{ 'envelope-simple.svg' | asset_url }}"
+                alt="Email Icon"
+                width="40"
+                height="40"
+              >
+              <a href="mailto:{{ section.settings.email_address }}" class="customer-support-feature__email">
+                {{ section.settings.email_address }}
+              </a>
+            </div>
+            <p class="customer-support-feature__chat-text">
+              {{ section.settings.chat_message }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Divider -->
+      <div class="customer-support-feature__divider"></div>
+
+      <!-- Right Column - Customer Testimonial -->
+      <div class="customer-support-feature__right-column">
+        {% for block in section.blocks %}
+          <div class="customer-support-feature__testimonial">
+            <!-- Opening Quote -->
+            <div class="customer-support-feature__quote customer-support-feature__quote--opening">
+              <img src="{{ 'quote.png' | asset_url }}" alt="quote" width="55" height="55">
+            </div>
+
+            <!-- Testimonial Text -->
+            {%- if block.settings.testimonial_text != blank -%}
+              <div class="customer-support-feature__testimonial-text">
+                {{ block.settings.testimonial_text }}
+              </div>
+            {%- endif -%}
+
+            <!-- Testimonial Author -->
+            {%- if block.settings.testimonial_author != blank -%}
+              <div class="customer-support-feature__testimonial-author">- {{ block.settings.testimonial_author }}</div>
+            {%- endif -%}
+
+            <!-- Closing Quote -->
+            <div class="customer-support-feature__quote customer-support-feature__quote--closing">
+              <img src="{{ 'quote.png' | asset_url }}" alt="quote" width="55" height="55">
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .customer-support-feature {
+    padding: 47px 0 112px;
+    background-color: var(--light-secondary-color);
+  }
+
+  .customer-support-feature__container {
+    display: flex;
+    align-items: stretch;
+    max-width: 1090px;
+    margin: 0 auto;
+    position: relative;
+    justify-content: space-between;
+  }
+
+  .customer-support-feature__left-column {
+    max-width: 541px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .customer-support-feature__content {
+    width: 100%;
+  }
+
+  .customer-support-feature__heading p {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 40px;
+    margin: 52px 0px 29px;
+    color: var(--light-black);
+  }
+
+  .customer-support-feature__heading strong {
+    color: var(--dark-primary-color);
+  }
+
+  .customer-support-feature__description p {
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--light-black);
+    margin: 0;
+  }
+
+  .customer-support-feature__contact-box {
+    background-color: var(--white);
+    border: 10px solid var(--border-color);
+    border-radius: 24px;
+    padding: 22px 14px 22px 31px;
+    max-width: 450px;
+    margin: 36px 0 39px;
+  }
+
+  .customer-support-feature__contact-text {
+    font-size: 18px;
+    color: var(--light-black);
+    margin: 0 0 7px 0;
+    font-weight: 500;
+    line-height: 32px;
+    font-weight: 400;
+  }
+
+  .customer-support-feature__email-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .customer-support-feature__email-icon {
+    color: var(--primary-color);
+    font-size: 18px;
+  }
+
+  .customer-support-feature__email {
+    color: var(--dark-primary-color);
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: underline;
+    line-height: 24px;
+  }
+
+  .customer-support-feature__chat-text {
+    font-size: 18px;
+    line-height: 32px;
+    color: var(--light-black);
+    font-weight: 400;
+    margin: 7px 0 0;
+    letter-spacing: 0;
+  }
+
+  .customer-support-feature__divider {
+    width: 1px;
+    background-color: var(--light-black);
+    margin: 0 33px;
+    display: block !important;
+  }
+
+  .customer-support-feature__right-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 482px;
+    width: 100%;
+  }
+
+  .customer-support-feature__testimonial {
+    position: relative;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .customer-support-feature__quote {
+    font-size: 48px;
+    color: var(--primary-color);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .customer-support-feature__quote--opening {
+    position: absolute;
+    top: -55px;
+    left: 0;
+  }
+
+  .customer-support-feature__quote--closing {
+       position: absolute;
+    bottom: -3px;
+    right: -70px;
+    transform: scale(-1);
+}
+
+  .customer-support-feature__testimonial-text p {
+    font-size: 18px;
+    line-height: 25.5px;
+    color: var(--light-black);
+    margin: 20px 0 24px 0;
+    max-width: 325px;
+    letter-spacing: 0;
+  }
+
+  .customer-support-feature__testimonial-author {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--light-black);
+    margin: 0;
+    text-align: end;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 990px) {
+    .customer-support-feature__container {
+      flex-direction: column;
+    }
+
+    .customer-support-feature__divider {
+      width: 100%;
+      height: 1px;
+      margin: 20px 0;
+    }
+
+    .customer-support-feature__heading {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .customer-support-feature {
+      padding: 60px 0;
+    }
+
+    .customer-support-feature__left-column,
+    .customer-support-feature__right-column {
+      padding: 24px;
+    }
+
+    .customer-support-feature__heading {
+      font-size: 28px;
+    }
+
+    .customer-support-feature__description {
+      font-size: 15px;
+    }
+
+    .customer-support-feature__contact-box {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .customer-support-feature__left-column,
+    .customer-support-feature__right-column {
+      padding: 20px;
+    }
+
+    .customer-support-feature__heading {
+      font-size: 24px;
+    }
+
+    .customer-support-feature__description {
+      font-size: 14px;
+    }
+
+    .customer-support-feature__contact-box {
+      padding: 16px;
+    }
+
+    .customer-support-feature__quote {
+      font-size: 36px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Customer Support Feature",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Column - Customer Support"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Here for You</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Your purchasing joy, 5-star reviews and return business means a lot to us and it is our goal that you are happy with your purchase. If there are any issues - like wrong shade - with your TGM goodies we will fix it fast and without fuss!</p>"
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact Box Text",
+      "default": "All you need to do is email us at:"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Email Address",
+      "default": "care@thegoodmineral.com"
+    },
+    {
+      "type": "text",
+      "id": "chat_message",
+      "label": "Chat Message",
+      "default": "or message us in the gorgias chat below!"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Customer Testimonial",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "<p>Thank you for helping me choose such a spot on color match and for a customer service experience that was truly exceptional.</p>"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_author",
+          "label": "Testimonial Author",
+          "default": "Brandie Osborne"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Support Feature",
+      "blocks": [
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

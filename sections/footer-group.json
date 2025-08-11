@@ -11,25 +11,26 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "footer": {
-      "type": "footer",
+    "custom_footer_zbXk98": {
+      "type": "custom-footer",
+      "name": "Custom Footer",
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "logo_image": "shopify://shop_images/gm-logo-full-horizontal_1.svg",
+        "brand_text": "",
+        "newsletter_heading": "Get the latest from The Good Mineral",
+        "email_placeholder": "Email Address",
+        "subscribe_button_text": "Subscribe",
+        "shop_heading": "Shop",
+        "shop_menu": "footer-shop",
+        "help_heading": "Help",
+        "help_menu": "footer-help",
+        "about_heading": "About",
+        "about_menu": "footer-about",
+        "copyright_text": "Copyright © 2022 THE GOOD MINERAL"
       }
     }
   },
   "order": [
-    "footer"
+    "custom_footer_zbXk98"
   ]
 }
