@@ -77,11 +77,29 @@
                     class="testimonial-slider__nav testimonial-slider__nav--prev"
                     aria-label="Previous testimonial"
                   >
-                   <svg xmlns="http://www.w3.org/2000/svg" width="33" height="39" viewBox="0 0 33 39" fill="none" style="fill: none;"><path d="M32 37.2597L1.96572 19.7542L32 1.76463L32 37.2597Z" stroke="currentColor" stroke-width="2"></path><line x1="11" y1="37" x2="11" y2="3" stroke="currentColor" stroke-width="2"></line></svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="33"
+                      height="39"
+                      viewBox="0 0 33 39"
+                      fill="none"
+                      style="fill: none;"
+                    >
+                      <path d="M32 37.2597L1.96572 19.7542L32 1.76463L32 37.2597Z" stroke="currentColor" stroke-width="2"></path><line x1="11" y1="37" x2="11" y2="3" stroke="currentColor" stroke-width="2"></line>
+                    </svg>
                   </button>
 
                   <button class="testimonial-slider__nav testimonial-slider__nav--next" aria-label="Next testimonial">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="33" height="39" viewBox="0 0 33 39" fill="none" style="fill: none;"><path d="M32 37.2597L1.96572 19.7542L32 1.76463L32 37.2597Z" stroke="currentColor" stroke-width="2"></path><line x1="11" y1="37" x2="11" y2="3" stroke="currentColor" stroke-width="2"></line></svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="33"
+                      height="39"
+                      viewBox="0 0 33 39"
+                      fill="none"
+                      style="fill: none;"
+                    >
+                      <path d="M32 37.2597L1.96572 19.7542L32 1.76463L32 37.2597Z" stroke="currentColor" stroke-width="2"></path><line x1="11" y1="37" x2="11" y2="3" stroke="currentColor" stroke-width="2"></line>
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -101,6 +119,10 @@
 
   .testimonial-slider__header {
     text-align: center;
+    margin-bottom: 36px;
+  }
+  .testimonial-slider__heading {
+    margin: 0;
   }
 
   .testimonial-slider__heading p {
@@ -246,42 +268,83 @@
     opacity: 1;
     padding: 0;
   }
-.testimonial-slider__nav:not(.disabled) svg path,
-.testimonial-slider__nav:not(.disabled) svg line{
-  stroke: var(--dark-primary-color);
-  color: var(--dark-primary-color);
-  
-}
-.testimonial-slider__nav.disabled {
-color: var(--light-black);
-
-}
+  .testimonial-slider__nav:not(.disabled) svg path,
+  .testimonial-slider__nav:not(.disabled) svg line {
+    stroke: var(--dark-primary-color);
+    color: var(--dark-primary-color);
+  }
+  .testimonial-slider__nav.disabled {
+    color: var(--light-black);
+  }
   .testimonial-slider__nav--prev {
     left: 153px;
   }
-  
+
   .testimonial-slider__nav--next {
     transform: scale(-1);
     right: 136px;
   }
 
- 
-
   /* Responsive adjustments */
-  @media screen and (max-width: 749px) {
-   
-
-    .testimonial-slider__testimonial-text {
-      font-size: 18px;
+  @media screen and (max-width: 1200px) {
+    .testimonial-slider__content {
+      gap: 50px;
+      justify-content: space-between;
     }
-
-    .testimonial-slider__avatar {
-      width: 60px;
-      height: 60px;
+    .testimonial-slider__image-section {
+      max-width: 50%;
+    }
+    .testimonial-slider__image-section img {
+      max-width: 100%;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .testimonial-slider__heading p {
+      font-size: 36px;
     }
   }
 
- 
+  @media screen and (max-width: 991px) {
+    .testimonial-slider__nav--next {
+      right: 107px;
+    }
+    .testimonial-slider__nav--prev {
+      left: 127px;
+    }
+    .testimonial-slider {
+      padding: 50px 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .testimonial-slider__content {
+      flex-direction: column;
+      gap: 40px;
+    }
+    .testimonial-slider__rating {
+      gap: 4px;
+    }
+    .testimonial-slider__testimonial-text p {
+      margin-bottom: 68px;
+    }
+    .testimonial-slider__nav {
+      bottom: 5px;
+    }
+    .testimonial-slider__nav--next {
+      right: 117px;
+    }
+    .testimonial-slider__nav--prev {
+      left: 137px;
+    }
+    .testimonial-slider__testimonial-content {
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    .testimonial-slider__heading p {
+      font-size: 32px;
+    }
+  }
 </style>
 
 <script type="module">
